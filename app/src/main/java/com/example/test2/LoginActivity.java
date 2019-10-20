@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
                                 if (auth.getCurrentUser().isEmailVerified())
                                 {
                                     //IntoDataBase(mail);//push details to Real time database
-                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, Basic_Detail.class);
                                     intent.putExtra("id",id);
                                     startActivity(intent);
                                     finish();

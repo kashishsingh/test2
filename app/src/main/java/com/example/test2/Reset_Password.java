@@ -5,10 +5,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
@@ -25,12 +26,12 @@ public class Reset_Password extends AppCompatDialogFragment
       View view = inflater.inflate(R.layout.reset_password,null);
 
                 builder.setView(view)
-                        .setTitle("Reset your Password")
                 .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         String email = editTextEmail.getText().toString().trim();
-                        listener.changePassword(email);
+                        if(!TextUtils.isEmpty(email))
+                            listener.changePassword(email);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

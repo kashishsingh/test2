@@ -10,14 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".PostGraduation_Details"
+            android:label="@string/title_activity_post_graduation__details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Gradauation_Details"
+            android:label="@string/title_activity_gradauation__details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Tenth_Details"
+            android:label="@string/title_activity_tenth__details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Basic_Detail"
+            android:label="@string/title_activity_basic__detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".resetPassword"
             android:label="@string/title_activity_reset_password"
-            android:theme="@android:style/Theme.Holo.Dialog"/>
-
-        <activity
-            android:name=".Student_details"
-            android:label="@string/title_activity_student_details"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@android:style/Theme.Holo.Dialog" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"

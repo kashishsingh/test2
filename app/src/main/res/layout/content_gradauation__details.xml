@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Gradauation_Details"
+    tools:showIn="@layout/activity_gradauation__details">
+
+    <TextView
+        android:id="@+id/gd"
+        android:layout_width="197dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="20dp"
+        android:text="Graduation Details"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textQualificationUG"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textQualificationUG"
+        android:layout_width="315dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="Qualification"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/textUGInstitute"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gd" />
+
+
+    <EditText
+        android:id="@+id/textUGInstitute"
+        android:layout_width="315dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="Institute"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/textUGUniversity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textQualificationUG" />
+
+    <EditText
+        android:id="@+id/textUGUniversity"
+        android:layout_width="315dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="Board/University"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/textUGYOP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUGInstitute" />
+
+    <EditText
+        android:id="@+id/textUGYOP"
+        android:layout_width="315dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="Year of Passing"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/textUGScore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUGUniversity" />
+
+    <EditText
+        android:id="@+id/textUGScore"
+        android:layout_width="315dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="Score"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/textUGCoursestart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUGYOP" />
+
+    <EditText
+        android:id="@+id/textUGCoursestart"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="Course Start"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/textUGCourseend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUGScore" />
+
+    <EditText
+        android:id="@+id/textUGCourseend"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="Course End"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUGCoursestart" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="105dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUGCourseend" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
