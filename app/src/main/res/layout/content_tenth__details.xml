@@ -28,7 +28,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="42dp"
         android:ems="10"
         android:hint="Institution"
@@ -64,7 +63,7 @@
         android:layout_marginEnd="42dp"
         android:ems="10"
         android:hint="Year of passing"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/textPercentage10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
@@ -78,10 +77,10 @@
         android:layout_marginStart="42dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="42dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Percentage"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,54 +91,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="129dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="129dp"
         android:layout_marginBottom="16dp"
         android:text="12th/PU"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPercentage10" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
+        android:id="@+id/radioGroup10"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
-        android:layout_marginEnd="42dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/Institution12"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textInstitution12"
+        app:layout_constraintEnd_toEndOf="@+id/textPercentage10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <RadioButton
             android:id="@+id/streamScience"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:checked="true"
             android:text="Science" />
 
         <RadioButton
             android:id="@+id/streamCommerce"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
             android:text="Commerce" />
 
         <RadioButton
             android:id="@+id/streamArts"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:text="Arts" />
     </RadioGroup>
 
     <EditText
-        android:id="@+id/Institution12"
+        android:id="@+id/textInstitution12"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="42dp"
         android:ems="10"
         android:hint="Institution"
@@ -147,7 +148,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textBoard12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup10" />
 
     <EditText
         android:id="@+id/textBoard12"
@@ -159,13 +160,13 @@
         android:ems="10"
         android:hint="Board/University"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/textYearofpassing12"
+        app:layout_constraintBottom_toTopOf="@+id/textYOP12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Institution12" />
+        app:layout_constraintTop_toBottomOf="@+id/textInstitution12" />
 
     <EditText
-        android:id="@+id/textYearofpassing12"
+        android:id="@+id/textYOP12"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
@@ -173,7 +174,7 @@
         android:layout_marginEnd="42dp"
         android:ems="10"
         android:hint="Year of passing"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/textPercentage12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -187,28 +188,44 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="42dp"
         android:ems="10"
+        android:inputType="numberDecimal"
         android:hint="Percentage"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textYearofpassing12"
+        app:layout_constraintTop_toBottomOf="@+id/textYOP12"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button10"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="42dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="8dp"
         android:background="#2196F3"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPercentage12" />
+
+    <ProgressBar
+        android:id="@+id/progressBar10"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/button10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPercentage12"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

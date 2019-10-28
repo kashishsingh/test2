@@ -3,30 +3,32 @@ package com.example.test2;
 import android.app.DatePickerDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import android.provider.ContactsContract;
+
+
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
@@ -40,25 +42,24 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import java.security.PrivateKey;
+import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
-
 import static com.squareup.picasso.Picasso.with;
 
 public class Basic_Detail extends AppCompatActivity {
 
     private ImageView userPhoto;
     private EditText editTextEmail, editTextName, editTextUSN, editTextFather, editTextDate, editTextPhone;
-    private Button submit;
     private String date, id;
-    private String name, USN, email, phone, father, selectedRadio;
+    private String name, USN, email, phone, father, gender;
     private RadioGroup radioGroup;
-    private RadioButton radioButton;
     private StorageReference mStorageRef;
     private ProgressBar mProgressBar;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    private DatabaseReference rootref;
-    private StorageTask mUploadTask;//to stope multipe upload
+    private DatabaseReference rootRef;
+   // private StorageTask mUploadTask;//to stope multipe upload
+    private UploadTask uploadTask;
+    private FirebaseAuth mAuth;
 
     Uri imageUri;
     private static final int Pick_Image =100;
@@ -68,10 +69,9 @@ public class Basic_Detail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic__detail_1);
+        Button submit;
 
-        Intent intent = getIntent(); // getting uid from login activity
-        id = intent.getStringExtra("id");
-
+        mAuth = FirebaseAuth.getInstance();
         userPhoto = findViewById(R.id.imageID);
         editTextEmail = findViewById(R.id.textEmail);
         editTextName = findViewById(R.id.textName);
@@ -98,7 +98,7 @@ public class Basic_Detail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(mUploadTask !=null && mUploadTask.isInProgress())
+                if(uploadTask !=null && uploadTask.isInProgress())
                 {
 
                     Toast.makeText(Basic_Detail.this,"Upload in progress",Toast.LENGTH_SHORT).show();
@@ -139,11 +139,18 @@ public class Basic_Detail extends AppCompatActivity {
             }
         };
 
-    }
+    }//onCreate ending
 
-    private void intoDatabase()
+
+        private void intoDatabase()
     {
+        RadioButton radioButton;
 
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null)
+        {
+            id = user.getUid();
+        }
         name = editTextName.getText().toString().trim();
         USN = editTextUSN .getText().toString().trim();
         email = editTextEmail .getText().toString().trim();
@@ -152,7 +159,7 @@ public class Basic_Detail extends AppCompatActivity {
         String bDate = editTextDate.getText().toString().trim();
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
-        selectedRadio = radioButton.getText().toString();
+        gender = radioButton.getText().toString();
 
         if (TextUtils.isEmpty(USN)) {
             editTextUSN.setError("Field cannot be blank");
@@ -168,11 +175,13 @@ public class Basic_Detail extends AppCompatActivity {
             if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())
             {
                 editTextEmail.setError("Pattern Missmatch");
+                return;
             }
         }
         else
         {
             editTextEmail.setError("Field cannot be blank");
+            return;
         }
 
         if (!TextUtils.isEmpty(phone))
@@ -204,6 +213,45 @@ public class Basic_Detail extends AppCompatActivity {
         if(imageUri!=null)
         {
             StorageReference fileReference = mStorageRef.child(id + "." + getPhotoExtension(imageUri));
+            //converting image from uri to byte Array and compressing it.
+            userPhoto.setDrawingCacheEnabled(true);
+            userPhoto.buildDrawingCache();
+            Bitmap bitmap = ((BitmapDrawable) userPhoto.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+
+            uploadTask = fileReference.putBytes(data); //uploading
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    Toast.makeText(Basic_Detail.this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    String photoUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                    Model_basicDetails object = new Model_basicDetails(name, USN, email, phone, father, date, gender, photoUrl );
+                    rootRef = FirebaseDatabase.getInstance().getReference(id);
+                    rootRef.child("Basic").setValue(object);
+                    //Toast.makeText(Basic_Detail.this,"Success",Toast.LENGTH_LONG).show();
+                    mProgressBar.setVisibility(ProgressBar.GONE);
+                    Intent tenth = new Intent(Basic_Detail.this, Tenth_Details.class);
+                    startActivity(tenth);
+
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                    mProgressBar.setVisibility(ProgressBar.VISIBLE);
+                }
+            });
+
+        }
+            /*StorageReference fileReference = mStorageRef.child(id + "." + getPhotoExtension(imageUri));
             mUploadTask = fileReference.putFile(imageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -211,11 +259,13 @@ public class Basic_Detail extends AppCompatActivity {
 
                     //upload is successfull
                     String photoUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                    TestBasicDetails object = new TestBasicDetails(name, USN, email, phone, father, date, selectedRadio, photoUrl );
-                    rootref = FirebaseDatabase.getInstance().getReference();
-                    rootref.child(id).setValue(object);
-                    Toast.makeText(Basic_Detail.this,"Success",Toast.LENGTH_LONG).show();
+                    Model_basicDetails object = new Model_basicDetails(name, USN, email, phone, father, date, gender, photoUrl );
+                    rootRef = FirebaseDatabase.getInstance().getReference(id);
+                    rootRef.child("Basic").setValue(object);
+                    //Toast.makeText(Basic_Detail.this,"Success",Toast.LENGTH_LONG).show();
                     mProgressBar.setVisibility(ProgressBar.GONE);
+                    Intent tenth = new Intent(Basic_Detail.this, Tenth_Details.class);
+                    startActivity(tenth);
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -231,7 +281,7 @@ public class Basic_Detail extends AppCompatActivity {
                     mProgressBar.setVisibility(ProgressBar.VISIBLE);
                 }
             });
-        }
+        } */
         else
         {
             Toast.makeText(Basic_Detail.this,"No Photo Selected", Toast.LENGTH_SHORT).show();
@@ -253,7 +303,11 @@ public class Basic_Detail extends AppCompatActivity {
         {
             imageUri = data.getData();
             //userPhoto.setImageURI(imageUri);
-            with(this).load(imageUri).into(userPhoto);
+            with(this)
+                    .load(imageUri)
+                    .fit()
+                    .centerCrop()
+                    .into(userPhoto);
         }
     }
 

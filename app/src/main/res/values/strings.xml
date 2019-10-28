@@ -104,4 +104,6 @@
     <string name="title_activity_tenth__details">Tenth_Details</string>
     <string name="title_activity_gradauation__details">Gradauation_Details</string>
     <string name="title_activity_post_graduation__details">PostGraduation_Details</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
 </resources>

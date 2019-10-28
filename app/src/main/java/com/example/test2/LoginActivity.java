@@ -1,11 +1,10 @@
 package com.example.test2;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,22 +17,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.DatabaseReference;
+
 
 
 public class LoginActivity extends AppCompatActivity implements Reset_Password.ResetPasswordListener {
     private EditText emailId, pass;
-    private Button btnSignIn;
-    private TextView tvSignUp, fPassword;
     private ProgressBar progressbar;
     private FirebaseAuth auth;
     //private DatabaseReference refRoot;
@@ -46,9 +39,9 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
         auth = FirebaseAuth.getInstance();
         emailId = findViewById(R.id.editText);
         pass = findViewById(R.id.editText2);
-        btnSignIn = findViewById(R.id.button2);
-        tvSignUp = findViewById(R.id.textView);
-        fPassword = findViewById(R.id.textView_FPassword);
+        Button btnSignIn = findViewById(R.id.button2);
+        //TextView tvSignUp = findViewById(R.id.textView);
+        TextView fPassword = findViewById(R.id.textView_FPassword);
         progressbar = findViewById(R.id.progressBar2);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -103,13 +96,16 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
                             progressbar.setVisibility(ProgressBar.GONE);
                             if (task.isSuccessful())
                                 {
-                                    String id = IntoDataBase(email);
+                                    //String id = getUUid();
                                 if (auth.getCurrentUser().isEmailVerified())
                                 {
                                     //IntoDataBase(mail);//push details to Real time database
-                                    Intent intent = new Intent(LoginActivity.this, Basic_Detail.class);
-                                    intent.putExtra("id",id);
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    //Intent intent = new Intent(LoginActivity.this, PostGraduation_Details.class);
+                                    //intent.putExtra("id",id);
                                     startActivity(intent);
+                                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     finish();
 
                                 }
@@ -142,7 +138,7 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
         }
 
 
-    private String IntoDataBase(String mail)
+    private String getUUid()
     {
         String uid="";
         //String umail="";
@@ -152,10 +148,8 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
             uid = user.getUid();
             //umail = user.getEmail();
         }
-        //refRoot = FirebaseDatabase.getInstance().getReference();
-        //refRoot.child(uid).child("Email").setValue(umail);
         return uid;
-        //refRoot.child(uid).child("Name").setValue("ram");
+
 
     }
 

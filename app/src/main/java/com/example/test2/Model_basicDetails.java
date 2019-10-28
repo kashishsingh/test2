@@ -1,15 +1,15 @@
 package com.example.test2;
 
-public class TestBasicDetails
+public class Model_basicDetails
 {
-    private String name,usn,email,father,date, phone, selectedRadio;
+    private String name,usn,email,father,date, phone, gender;
     private String mImageUrl;
 
-    public TestBasicDetails()
+    public Model_basicDetails()
     {}
 
-    public TestBasicDetails(String name, String USN, String email, String phone, String father,
-                            String date, String SelectedRadio, String mImageUrl)
+    public Model_basicDetails(String name, String USN, String email, String phone, String father,
+                             String date, String gender, String mImageUrl)
     {
         this.name = name;
         this.usn = USN;
@@ -17,7 +17,7 @@ public class TestBasicDetails
         this.phone = phone;
         this.father = father;
         this.date = date;
-        this.selectedRadio = SelectedRadio;
+        this.gender = gender;
         this.mImageUrl = mImageUrl;
     }
 
@@ -46,7 +46,7 @@ public class TestBasicDetails
     }
 
     public String getSelectedRadio() {
-        return selectedRadio;
+        return gender;
     }
 
     public String getmImageUrl()
