@@ -106,4 +106,13 @@
     <string name="title_activity_post_graduation__details">PostGraduation_Details</string>
     <string name="title_activity_register">RegisterActivity</string>
 
+    <string name="name">Name</string>
+    <string name="usn">USN</string>
+    <string name="phone">phone</string>
+    <string name="gender">gender</string>
+    <string name="father">father</string>
+    <string name="date_of_birth">date of birth</string>
+    <string name="title_activity_view">viewActivity</string>
+
+
 </resources>

@@ -2,7 +2,7 @@ package com.example.test2;
 
 public class Model_basicDetails
 {
-    private String name,usn,email,father,date, phone, gender;
+    private String name,usn,email,father,date, phone, selectedRadio;
     private String mImageUrl;
 
     public Model_basicDetails()
@@ -17,7 +17,7 @@ public class Model_basicDetails
         this.phone = phone;
         this.father = father;
         this.date = date;
-        this.gender = gender;
+        this.selectedRadio = gender;
         this.mImageUrl = mImageUrl;
     }
 
@@ -46,11 +46,43 @@ public class Model_basicDetails
     }
 
     public String getSelectedRadio() {
-        return gender;
+        return selectedRadio;
     }
 
     public String getmImageUrl()
     {
         return mImageUrl;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUsn(String usn) {
+        this.usn = usn;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFather(String father) {
+        this.father = father;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setGender(String gender) {
+        this.selectedRadio = gender;
+    }
+
+    public void setmImageUrl(String mImageUrl) {
+        this.mImageUrl = mImageUrl;
     }
 }

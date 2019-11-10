@@ -10,9 +10,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 
+
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -44,6 +46,7 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import static com.squareup.picasso.Picasso.with;
 
 public class Basic_Detail extends AppCompatActivity {
@@ -53,7 +56,8 @@ public class Basic_Detail extends AppCompatActivity {
     private String date, id;
     private String name, USN, email, phone, father, gender;
     private RadioGroup radioGroup;
-    private StorageReference mStorageRef;
+    private RadioButton radioButton;
+    private StorageReference mStorageRef, fileReference;
     private ProgressBar mProgressBar;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private DatabaseReference rootRef;
@@ -105,6 +109,65 @@ public class Basic_Detail extends AppCompatActivity {
                 }
                 else
                 {
+                    name = editTextName.getText().toString().trim();
+                    USN = editTextUSN .getText().toString().trim();
+                    email = editTextEmail .getText().toString().trim();
+                    phone = editTextPhone.getText().toString().trim();
+                    father = editTextFather .getText().toString().trim();
+                    String bDate = editTextDate.getText().toString().trim();
+                    int radioId = radioGroup.getCheckedRadioButtonId();
+                    radioButton = findViewById(radioId);
+                    gender = radioButton.getText().toString();
+
+                    if (TextUtils.isEmpty(USN)) {
+                        editTextUSN.setError("Field cannot be blank");
+                        return;
+                    }
+                    if (TextUtils.isEmpty(name)) {
+                        editTextName.setError("Field cannot be blank");
+                        return;
+                    }
+
+                    if (!TextUtils.isEmpty(email))
+                    {
+                        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())
+                        {
+                            editTextEmail.setError("Pattern Missmatch");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        editTextEmail.setError("Field cannot be blank");
+                        return;
+                    }
+
+                    if (!TextUtils.isEmpty(phone))
+                    {
+                        if(phone.length()!=10)
+                        {
+                            editTextPhone.setError("Please check Phone number");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        editTextPhone.setError("Field cannot be blank");
+                        return;
+                    }
+
+
+                    if (TextUtils.isEmpty(father)) {
+                        editTextFather.setError("Field cannot be blank");
+                        return;
+                    }
+
+
+                    if(TextUtils.isEmpty(bDate)){
+                        editTextDate.setError("Field cannot be blank");
+                        return;
+                    }
+
                     intoDatabase();
                 }
             }
@@ -143,152 +206,139 @@ public class Basic_Detail extends AppCompatActivity {
 
 
         private void intoDatabase()
-    {
-        RadioButton radioButton;
-
-        FirebaseUser user = mAuth.getCurrentUser();
-        if(user != null)
         {
-            id = user.getUid();
-        }
-        name = editTextName.getText().toString().trim();
-        USN = editTextUSN .getText().toString().trim();
-        email = editTextEmail .getText().toString().trim();
-        phone = editTextPhone.getText().toString().trim();
-        father = editTextFather .getText().toString().trim();
-        String bDate = editTextDate.getText().toString().trim();
-        int radioId = radioGroup.getCheckedRadioButtonId();
-        radioButton = findViewById(radioId);
-        gender = radioButton.getText().toString();
+            mProgressBar.setVisibility(ProgressBar.VISIBLE);
 
-        if (TextUtils.isEmpty(USN)) {
-            editTextUSN.setError("Field cannot be blank");
-            return;
-        }
-        if (TextUtils.isEmpty(name)) {
-            editTextName.setError("Field cannot be blank");
-            return;
-        }
-
-        if (!TextUtils.isEmpty(email))
-        {
-            if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())
+            FirebaseUser user = mAuth.getCurrentUser();
+            if(user != null)
             {
-                editTextEmail.setError("Pattern Missmatch");
-                return;
+                id = user.getUid();
             }
-        }
-        else
-        {
-            editTextEmail.setError("Field cannot be blank");
-            return;
-        }
 
-        if (!TextUtils.isEmpty(phone))
-        {
-            if(phone.length()!=10)
+            if(imageUri!=null)
             {
-                editTextPhone.setError("Please check Phone number");
-                return;
+                fileReference = mStorageRef.child(id + "." + getPhotoExtension(imageUri));
+                //converting image from uri to byte Array and compressing it.
+                userPhoto.setDrawingCacheEnabled(true);
+                userPhoto.buildDrawingCache();
+                Bitmap bitmap = ((BitmapDrawable) userPhoto.getDrawable()).getBitmap();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] data = baos.toByteArray();
+
+                uploadTask = fileReference.putBytes(data); //uploading
+
+                Task<Uri> urlTask = uploadTask.
+                        continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()
+                                         {
+                                             @Override
+                                             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                                 if (!task.isSuccessful()) {
+                                                     throw task.getException();
+                                                 }
+                                                 return fileReference.getDownloadUrl();
+
+                                             }
+                                         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            Uri downloadUri = task.getResult();
+                            String photoUrl = downloadUri.toString();
+                            Model_basicDetails object = new Model_basicDetails(name, USN, email, phone, father, date, gender, photoUrl );
+                            rootRef = FirebaseDatabase.getInstance().getReference("user/"+id);
+                            rootRef.child("Basic").setValue(object);
+                            mProgressBar.setVisibility(ProgressBar.GONE);
+                            Intent tenth = new Intent(Basic_Detail.this, Tenth_Details.class);
+                            Toast.makeText(Basic_Detail.this,"Saved",Toast.LENGTH_SHORT).show();
+                            startActivity(tenth);
+                            finish();
+
+                        }
+                        else
+                        {
+                            Toast.makeText(Basic_Detail.this,"Error",Toast.LENGTH_SHORT).show();
+                            mProgressBar.setVisibility(ProgressBar.GONE);
+                        }
+                    }
+                });
+
+
+                /*uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(Basic_Detail.this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        getPhotoDownloadUrl();
+
+
+                        Model_basicDetails object = new Model_basicDetails(name, USN, email, phone, father, date, gender, photoUrl );
+                        rootRef = FirebaseDatabase.getInstance().getReference(id);
+                        rootRef.child("Basic").setValue(object);
+                        mProgressBar.setVisibility(ProgressBar.GONE);
+                        Intent tenth = new Intent(Basic_Detail.this, Tenth_Details.class);
+                        Toast.makeText(Basic_Detail.this,"Saved",Toast.LENGTH_SHORT).show();
+                        startActivity(tenth);
+                        finish();
+
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                        mProgressBar.setVisibility(ProgressBar.VISIBLE);
+                    }
+                });*/
+
             }
-        }
-        else
-        {
-            editTextPhone.setError("Field cannot be blank");
-            return;
-        }
+                /*StorageReference fileReference = mStorageRef.child(id + "." + getPhotoExtension(imageUri));
+                mUploadTask = fileReference.putFile(imageUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+                        //upload is successfull
+                        String photoUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                        Model_basicDetails object = new Model_basicDetails(name, USN, email, phone, father, date, gender, photoUrl );
+                        rootRef = FirebaseDatabase.getInstance().getReference(id);
+                        rootRef.child("Basic").setValue(object);
+                        //Toast.makeText(Basic_Detail.this,"Success",Toast.LENGTH_LONG).show();
+                        mProgressBar.setVisibility(ProgressBar.GONE);
+                        Intent tenth = new Intent(Basic_Detail.this, Tenth_Details.class);
+                        startActivity(tenth);
 
-        if (TextUtils.isEmpty(father)) {
-            editTextFather.setError("Field cannot be blank");
-            return;
-        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
+                        Toast.makeText(Basic_Detail.this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
 
-        if(TextUtils.isEmpty(bDate)){
-            editTextDate.setError("Field cannot be blank");
-            return;
-        }
-
-        if(imageUri!=null)
-        {
-            StorageReference fileReference = mStorageRef.child(id + "." + getPhotoExtension(imageUri));
-            //converting image from uri to byte Array and compressing it.
-            userPhoto.setDrawingCacheEnabled(true);
-            userPhoto.buildDrawingCache();
-            Bitmap bitmap = ((BitmapDrawable) userPhoto.getDrawable()).getBitmap();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] data = baos.toByteArray();
-
-            uploadTask = fileReference.putBytes(data); //uploading
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-
-                    Toast.makeText(Basic_Detail.this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                    String photoUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                    Model_basicDetails object = new Model_basicDetails(name, USN, email, phone, father, date, gender, photoUrl );
-                    rootRef = FirebaseDatabase.getInstance().getReference(id);
-                    rootRef.child("Basic").setValue(object);
-                    //Toast.makeText(Basic_Detail.this,"Success",Toast.LENGTH_LONG).show();
-                    mProgressBar.setVisibility(ProgressBar.GONE);
-                    Intent tenth = new Intent(Basic_Detail.this, Tenth_Details.class);
-                    startActivity(tenth);
-
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-
-                    mProgressBar.setVisibility(ProgressBar.VISIBLE);
-                }
-            });
-
-        }
-            /*StorageReference fileReference = mStorageRef.child(id + "." + getPhotoExtension(imageUri));
-            mUploadTask = fileReference.putFile(imageUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                    //upload is successfull
-                    String photoUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                    Model_basicDetails object = new Model_basicDetails(name, USN, email, phone, father, date, gender, photoUrl );
-                    rootRef = FirebaseDatabase.getInstance().getReference(id);
-                    rootRef.child("Basic").setValue(object);
-                    //Toast.makeText(Basic_Detail.this,"Success",Toast.LENGTH_LONG).show();
-                    mProgressBar.setVisibility(ProgressBar.GONE);
-                    Intent tenth = new Intent(Basic_Detail.this, Tenth_Details.class);
-                    startActivity(tenth);
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-
-                    Toast.makeText(Basic_Detail.this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-
-                    mProgressBar.setVisibility(ProgressBar.VISIBLE);
-                }
-            });
-        } */
-        else
-        {
-            Toast.makeText(Basic_Detail.this,"No Photo Selected", Toast.LENGTH_SHORT).show();
-        }
+                        mProgressBar.setVisibility(ProgressBar.VISIBLE);
+                    }
+                });
+            } */
+            else
+            {
+                Toast.makeText(Basic_Detail.this,"No Photo Selected", Toast.LENGTH_SHORT).show();
+                mProgressBar.setVisibility(ProgressBar.GONE);
+            }
 
 
     }
+
 
     private void selectPhoto()//to select photo from gallery
     {
@@ -307,6 +357,7 @@ public class Basic_Detail extends AppCompatActivity {
                     .load(imageUri)
                     .fit()
                     .centerCrop()
+                    .transform(new RoundedCornersTransformation(18,8))
                     .into(userPhoto);
         }
     }

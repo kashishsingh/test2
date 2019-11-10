@@ -25,27 +25,26 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="230dp"
-                    android:orientation="vertical"
+                    android:layout_height="240dp"
+                    android:background="@drawable/back"
                     android:gravity="center"
-                    android:background="@drawable/back">
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="90dp"
                         android:layout_height="90dp"
-                        android:src="@drawable/home"
                         android:layout_gravity="center"
-                        />
+                        android:src="@drawable/home" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Something to change"
                         android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Something to change"
                         android:textColor="#ffffff"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        />
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -54,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="215dp"
+                    android:layout_marginTop="220dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     >
@@ -308,6 +307,92 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:id="@+id/buttonLogout"
+                                    android:background="@android:color/transparent"
+                                    />
+
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="135dp"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp"
+                        >
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp"
+                            android:layout_gravity="center">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:id="@+id/view"
+                                    android:src="@drawable/ic_view"
+                                    android:layout_centerInParent="true"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="View"
+                                    android:textSize="16sp"
+                                    android:layout_below="@id/view"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"/>
+                                <Button
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/buttonView"
+                                    android:background="@android:color/transparent"
+                                    />
+
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            android:layout_gravity="center">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:id="@+id/sample"
+                                    android:src="@drawable/logout"
+                                    android:layout_centerInParent="true"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sample"
+                                    android:textSize="16sp"
+                                    android:layout_below="@id/sample"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"/>
+                                <Button
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/buttonSample"
                                     android:background="@android:color/transparent"
                                     />
 

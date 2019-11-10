@@ -29,7 +29,6 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
     private EditText emailId, pass;
     private ProgressBar progressbar;
     private FirebaseAuth auth;
-    //private DatabaseReference refRoot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,6 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
         emailId = findViewById(R.id.editText);
         pass = findViewById(R.id.editText2);
         Button btnSignIn = findViewById(R.id.button2);
-        //TextView tvSignUp = findViewById(R.id.textView);
         TextView fPassword = findViewById(R.id.textView_FPassword);
         progressbar = findViewById(R.id.progressBar2);
 
@@ -48,17 +46,17 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
             @Override
             public void onClick(View v) {
 
-                String email = emailId.getText().toString();
-                final String password = pass.getText().toString();
+                String email = emailId.getText().toString().trim();
+                final String password = pass.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_LONG).show();
+                    emailId.setError("Email cannot be empty");
                     emailId.requestFocus();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_LONG).show();
+                    pass.setError("Password cannot be empty");
                     pass.requestFocus();
                     return;
                 }
@@ -96,24 +94,22 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
                             progressbar.setVisibility(ProgressBar.GONE);
                             if (task.isSuccessful())
                                 {
-                                    //String id = getUUid();
-                                if (auth.getCurrentUser().isEmailVerified())
-                                {
-                                    //IntoDataBase(mail);//push details to Real time database
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    //Intent intent = new Intent(LoginActivity.this, PostGraduation_Details.class);
-                                    //intent.putExtra("id",id);
-                                    startActivity(intent);
-                                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    finish();
-
-                                }
-                                else
+                                    FirebaseUser user = auth.getCurrentUser();
+                                    if(user != null )
                                     {
-                                    Toast.makeText(LoginActivity.this, "Please verify your E-mail id", Toast.LENGTH_LONG).show();
-                                    }
+                                        if(user.isEmailVerified())
+                                        {
+                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(LoginActivity.this, "Please verify your E-mail id", Toast.LENGTH_LONG).show();
 
+                                        }
+
+                                    }
                             }
                         }
                     })
@@ -137,21 +133,6 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
             });
         }
 
-
-    private String getUUid()
-    {
-        String uid="";
-        //String umail="";
-        FirebaseUser user = auth.getCurrentUser();
-        if(user!= null)
-        {
-            uid = user.getUid();
-            //umail = user.getEmail();
-        }
-        return uid;
-
-
-    }
 
     @Override
     public void changePassword(String email) //email from reset_Password.java

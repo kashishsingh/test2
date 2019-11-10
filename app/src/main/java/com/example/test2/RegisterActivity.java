@@ -22,7 +22,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
+
+    private static final Pattern EMAIL_PATTERN =
+            Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@bmsce.ac.in$");
 
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -57,10 +62,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString().trim();
                 String confirmPassword = editTextConfirmPassword.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)) {
+                if(!isValidEmail(email))
+                    return;
+
+                /*if (TextUtils.isEmpty(email)) {
                     editTextEmail.setError("Field cannot be blank");
                     return;
-                }
+                }*/
 
                 if (TextUtils.isEmpty(password)) {
                     editTextPassword.setError("Field cannot be blank");
@@ -102,6 +110,24 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    public final boolean isValidEmail(CharSequence mail)
+    {
+        if (TextUtils.isEmpty(mail))
+        {
+            editTextEmail.setError("Field cannot be blank");
+            return false;
+        }
+        else if(!EMAIL_PATTERN.matcher(mail).matches())
+        {
+            editTextEmail.setError("Please check your email!!!");
+            return false;
+        }
+        else {
+            editTextEmail.setError(null);
+            return true;
+        }
+    }
+
     private void signUp(String email, String password)
     {
         progressbar.setVisibility(ProgressBar.VISIBLE);
@@ -131,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
                         // user does not exist. not gonna happen
                         Toast.makeText(RegisterActivity.this,"Problem",Toast.LENGTH_SHORT).show();
                     }
-                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                     finish();
                 }
             }

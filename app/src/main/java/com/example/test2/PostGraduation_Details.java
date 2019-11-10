@@ -1,5 +1,6 @@
 package com.example.test2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -107,7 +108,7 @@ public class PostGraduation_Details extends AppCompatActivity {
             collegeEmail = user.getEmail();
             Model_PGDetail object = new Model_PGDetail(YOJ, YOP, semester, SGPA, CGPA, backlog, address,collegeEmail);
 
-            rootRef = FirebaseDatabase.getInstance().getReference(uid);
+            rootRef = FirebaseDatabase.getInstance().getReference("user/"+uid);
 
             rootRef.child("PG").setValue(object, new DatabaseReference.CompletionListener() {
                 @Override
@@ -116,7 +117,9 @@ public class PostGraduation_Details extends AppCompatActivity {
                     if(databaseError == null)
                     {
                         progressBar.setVisibility(ProgressBar.GONE);
-                        Toast.makeText(PostGraduation_Details.this,"Success",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PostGraduation_Details.this,"Saved",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(PostGraduation_Details.this,MainActivity.class);
+                        startActivity(intent);
                     }
                     else
                     {

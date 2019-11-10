@@ -125,7 +125,7 @@ public class Tenth_Details extends AppCompatActivity {
         if(user != null)
         {
             uid = user.getUid();
-            rootRef = FirebaseDatabase.getInstance().getReference(uid);
+            rootRef = FirebaseDatabase.getInstance().getReference("user/"+uid);
             rootRef.child("tenth").setValue(object, new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
@@ -133,7 +133,9 @@ public class Tenth_Details extends AppCompatActivity {
                     {
                         //success
                         progressBar.setVisibility(ProgressBar.GONE);
+                        Toast.makeText(Tenth_Details.this,"Saved",Toast.LENGTH_SHORT).show();
                         startActivity(intent);
+                        finish();
                     }
                     else
                     {

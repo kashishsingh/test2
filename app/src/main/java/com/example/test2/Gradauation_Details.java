@@ -106,7 +106,7 @@ public class Gradauation_Details extends AppCompatActivity {
         {
             uid = user.getUid();
             //Toast.makeText(Gradauation_Details.this,uid,Toast.LENGTH_SHORT).show();
-            rootRef = FirebaseDatabase.getInstance().getReference(uid);
+            rootRef = FirebaseDatabase.getInstance().getReference("user/"+uid);
             rootRef.child("Graduation").setValue(object, new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
@@ -115,7 +115,9 @@ public class Gradauation_Details extends AppCompatActivity {
                     {
                         Intent intent = new Intent(Gradauation_Details.this,PostGraduation_Details.class);
                         progressBar.setVisibility(ProgressBar.GONE);
+                        Toast.makeText(Gradauation_Details.this,"Saved",Toast.LENGTH_SHORT).show();
                         startActivity(intent);
+                        finish();
 
                     }
                     else {

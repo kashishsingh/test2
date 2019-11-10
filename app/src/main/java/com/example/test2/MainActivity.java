@@ -13,7 +13,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
 {
 
-Button personal, tenth, twelve, bachelor, pg, logout;
+
+
+Button view;
 
 
     @Override
@@ -21,6 +23,7 @@ Button personal, tenth, twelve, bachelor, pg, logout;
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button personal, tenth, twelve, bachelor, pg, logout;
 
         personal = findViewById(R.id.buttonPersonal);
         tenth = findViewById(R.id.buttonSchool);
@@ -28,6 +31,7 @@ Button personal, tenth, twelve, bachelor, pg, logout;
         bachelor = findViewById(R.id.buttonBachelor);
         pg = findViewById(R.id.buttonPG);
         logout = findViewById(R.id.buttonLogout);
+        view = findViewById(R.id.buttonView);
 
 
         personal.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +89,8 @@ Button personal, tenth, twelve, bachelor, pg, logout;
                 {
                     auth.signOut();
                     Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                    Toast.makeText(MainActivity.this,"Signed Out",Toast.LENGTH_SHORT).show();
                     startActivity(intent);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     finish();
 
                 }
@@ -94,7 +98,13 @@ Button personal, tenth, twelve, bachelor, pg, logout;
             }
         });
 
-
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,viewActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

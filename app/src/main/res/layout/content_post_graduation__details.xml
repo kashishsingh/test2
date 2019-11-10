@@ -108,6 +108,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="43dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="42dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
@@ -121,8 +122,8 @@
 
     <EditText
         android:id="@+id/textPresentAddress"
-        android:layout_width="325dp"
-        android:layout_height="86dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="43dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="42dp"
@@ -130,7 +131,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Present Address"
-        android:inputType="textMultiLine"
+        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/buttonPG"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

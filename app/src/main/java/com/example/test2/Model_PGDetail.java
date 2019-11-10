@@ -52,4 +52,36 @@ public class Model_PGDetail
     public String getCollegeEmail() {
         return collegeEmail;
     }
+
+    public void setYOJ(String YOJ) {
+        this.YOJ = YOJ;
+    }
+
+    public void setYOP(String YOP) {
+        this.YOP = YOP;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public void setSGPA(String SGPA) {
+        this.SGPA = SGPA;
+    }
+
+    public void setCGPA(String CGPA) {
+        this.CGPA = CGPA;
+    }
+
+    public void setBacklog(String backlog) {
+        this.backlog = backlog;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCollegeEmail(String collegeEmail) {
+        this.collegeEmail = collegeEmail;
+    }
 }
