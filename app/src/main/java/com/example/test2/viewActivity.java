@@ -1,6 +1,8 @@
 package com.example.test2;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,13 +29,15 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class viewActivity extends AppCompatActivity
+public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteListener
 {
     private DatabaseReference ref;
     RecyclerView recyclerView;
     ArrayList<Model_basicDetails> list;
     ArrayList <Model_PGDetail> list2;
     MyAdapter adapter;
+    MyAdapter.OnNoteListener listener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,13 +49,14 @@ public class viewActivity extends AppCompatActivity
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(viewActivity.this));
 
         //Query query = FirebaseDatabase.getInstance().getReference().orderByChild("name").equalTo("kashish");
 
         ref = FirebaseDatabase.getInstance().getReference("user");
         ref.addValueEventListener(valueEventListener);
 
+        listener = this;
     }
 
     ValueEventListener valueEventListener = new ValueEventListener()
@@ -58,6 +64,7 @@ public class viewActivity extends AppCompatActivity
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
         {
+
             list = new ArrayList<Model_basicDetails>();
             list2 = new ArrayList<Model_PGDetail>();
 
@@ -83,7 +90,7 @@ public class viewActivity extends AppCompatActivity
                     list.add(detail);
 
                 }
-                adapter = new MyAdapter(viewActivity.this, list);
+                adapter = new MyAdapter(viewActivity.this, list, listener);
                 recyclerView.setAdapter(adapter);
 
             }
@@ -126,6 +133,18 @@ public class viewActivity extends AppCompatActivity
             }
         });
         return  true;
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+        Model_basicDetails obj = list.get(position);
+        String id = obj.getId();
+        Intent intent = new Intent(viewActivity.this,DetailedViewActivity.class);
+        intent.putExtra("id",id);
+        startActivity(intent);
+
+
+
     }
 }
 

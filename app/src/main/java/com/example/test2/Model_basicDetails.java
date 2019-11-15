@@ -2,14 +2,14 @@ package com.example.test2;
 
 public class Model_basicDetails
 {
-    private String name,usn,email,father,date, phone, selectedRadio;
+    private String name,usn,email,father,date, phone, selectedRadio, id;
     private String mImageUrl;
 
     public Model_basicDetails()
     {}
 
     public Model_basicDetails(String name, String USN, String email, String phone, String father,
-                             String date, String gender, String mImageUrl)
+                             String date, String gender, String mImageUrl, String id)
     {
         this.name = name;
         this.usn = USN;
@@ -19,6 +19,7 @@ public class Model_basicDetails
         this.date = date;
         this.selectedRadio = gender;
         this.mImageUrl = mImageUrl;
+        this.id = id;
     }
 
     public String getName() {
@@ -54,12 +55,21 @@ public class Model_basicDetails
         return mImageUrl;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
 
     public void setUsn(String usn) {
         this.usn = usn;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setEmail(String email) {
@@ -85,4 +95,6 @@ public class Model_basicDetails
     public void setmImageUrl(String mImageUrl) {
         this.mImageUrl = mImageUrl;
     }
+
+
 }

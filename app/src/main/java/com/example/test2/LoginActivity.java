@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements Reset_Password.R
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             progressbar.setVisibility(ProgressBar.GONE);
                             if (task.isSuccessful())
-                                {
+                            {
                                     FirebaseUser user = auth.getCurrentUser();
                                     if(user != null )
                                     {

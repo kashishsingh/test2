@@ -103,9 +103,15 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
-        if(mFirebaseAuth.getCurrentUser() != null)
+        user = mFirebaseAuth.getCurrentUser();
+        if(user != null && user.isEmailVerified())
         {
             startActivity(new Intent(this, MainActivity.class));
+        }
+        else if(user != null && !user.isEmailVerified())
+        {
+            startActivity(new Intent(this, LoginActivity.class));
+            Toast.makeText(RegisterActivity.this,"Please verify your Email from registerd Email ID",Toast.LENGTH_SHORT).show();
         }
 
     }

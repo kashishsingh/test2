@@ -1,6 +1,7 @@
 package com.example.test2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,11 +28,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
      private Context context;
      private ArrayList<Model_basicDetails> profile;
      private ArrayList<Model_basicDetails> profileFull;
+     private OnNoteListener mOnNoteListener;
 
-     MyAdapter(Context context, ArrayList<Model_basicDetails> profile)
+
+     MyAdapter(Context context, ArrayList<Model_basicDetails> profile, OnNoteListener onNoteListener )
      {
          this.context = context;
          this.profile = profile;
+         this.mOnNoteListener = onNoteListener;
          profileFull = new ArrayList<>(profile);
      }
 
@@ -38,7 +43,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.cardview,parent,false));
+         View v = LayoutInflater.from(context).inflate(R.layout.cardview,parent,false);
+         return new MyViewHolder(v,mOnNoteListener);
     }
 
     @Override
@@ -49,6 +55,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         holder.usn.setText(profile.get(position).getUsn());
         holder.email.setText(profile.get(position).getEmail());
         holder.phone.setText(profile.get(position).getPhone());
+        //holder.id.setText(profile.get(position).getId());
+        holder.id.getId();
         Picasso.with(context).load(profile.get(position).getmImageUrl())
                 .transform(new CropCircleTransformation())
                 .into(holder.pic);
@@ -60,18 +68,34 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
     }
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView name,usn,email,phone;
+        TextView name,usn,email,phone, id;//check
         ImageView pic;
+        OnNoteListener onNoteListener;
 
-            MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            name = itemView.findViewById(R.id.name);
-            usn = itemView.findViewById(R.id.usn);
-            email = itemView.findViewById(R.id.email);
-            pic = itemView.findViewById(R.id.pic);
-            phone = itemView.findViewById(R.id.phone);
+            MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener)
+            {
+                super(itemView);
+
+                name = itemView.findViewById(R.id.name);
+                usn = itemView.findViewById(R.id.usn);
+                email = itemView.findViewById(R.id.email);
+                pic = itemView.findViewById(R.id.pic);
+                phone = itemView.findViewById(R.id.phone);
+                id = itemView.findViewById(R.id.id);
+
+                this.onNoteListener = onNoteListener;
+
+                itemView.setOnClickListener(this);
+
+            }
+
+        @Override
+        public void onClick(View view)
+        {
+
+                onNoteListener.onNoteClick(getAdapterPosition());
 
         }
     }
@@ -113,4 +137,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             notifyDataSetChanged();
         }
     };
+
+     public interface OnNoteListener
+     {
+         void onNoteClick(int position);
+
+     }
 }

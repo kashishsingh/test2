@@ -247,7 +247,7 @@ public class Basic_Detail extends AppCompatActivity {
                         {
                             Uri downloadUri = task.getResult();
                             String photoUrl = downloadUri.toString();
-                            Model_basicDetails object = new Model_basicDetails(name, USN, email, phone, father, date, gender, photoUrl );
+                            Model_basicDetails object = new Model_basicDetails(name, USN, email, phone, father, date, gender, photoUrl,id );
                             rootRef = FirebaseDatabase.getInstance().getReference("user/"+id);
                             rootRef.child("Basic").setValue(object);
                             mProgressBar.setVisibility(ProgressBar.GONE);
