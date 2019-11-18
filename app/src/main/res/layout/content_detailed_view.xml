@@ -46,7 +46,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-light"
-            android:text="Test Name"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -60,7 +59,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="3dp"
             android:fontFamily="sans-serif"
-            android:text="kishan.mca17@bmsce.ac.in"
             android:textColor="@color/address"
             android:textSize="14sp" />
 
@@ -73,7 +71,6 @@
             android:layout_marginTop="3dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif"
-            android:text="1BM17MCA99"
             android:textAllCaps="true"
             android:textColor="@color/address"
             android:textSize="14sp" />
@@ -139,7 +136,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tvPersonalMail"
                         android:fontFamily="sans-serif-light"
-                        android:text="kashish.singh2050@gmail.com "
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -172,7 +168,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:text="1993/06/22 "
                             android:id="@+id/tvDate"
                             android:textColor="#000000"
                             android:textSize="16sp" />
@@ -203,7 +198,6 @@
                             android:layout_gravity="end"
                             android:layout_marginEnd="15dp"
                             android:fontFamily="sans-serif-light"
-                            android:text="Male"
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
@@ -229,7 +223,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tvFather"
                         android:fontFamily="sans-serif-light"
-                        android:text="Kiran singh "
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -283,7 +276,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tv10Institute"
                         android:fontFamily="sans-serif-light"
-                        android:text="Montessory Memmorial English Boarding high school"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -307,7 +299,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tv10University"
                         android:fontFamily="sans-serif-light"
-                        android:text="Montessory Memmorial English Boarding high school"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -340,7 +331,6 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/tvYop10"
                             android:fontFamily="sans-serif-light"
-                            android:text="1993/06/22 "
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
@@ -370,7 +360,6 @@
                             android:layout_gravity="end"
                             android:layout_marginEnd="15dp"
                             android:fontFamily="sans-serif-light"
-                            android:text="75 "
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
@@ -422,7 +411,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tv12Institute"
                         android:fontFamily="sans-serif-light"
-                        android:text="Sai Global H.S "
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -447,8 +435,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tv12University"
                         android:fontFamily="sans-serif-light"
-                        android:text="Montessory Memmorial English Boarding high school"
-                        android:textColor="#000000"
+                         android:textColor="#000000"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -456,7 +443,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:weightSum="3"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -481,7 +468,6 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/tv12Yop"
                             android:fontFamily="sans-serif-light"
-                            android:text="1993/06/22 "
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
@@ -510,7 +496,6 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/tv12Stream"
                             android:fontFamily="sans-serif-light"
-                            android:text="Science "
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
@@ -521,27 +506,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="percentage "
-                            android:layout_gravity="end"
+                            android:layout_gravity="center"
                             android:layout_marginEnd="15dp"
+                            android:text="percentage "
                             android:textColor="@color/headings"
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/tv12Percentage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tv12Percentage"
-                            android:layout_gravity="end"
+                            android:layout_gravity="center"
                             android:layout_marginEnd="15dp"
                             android:fontFamily="sans-serif-light"
-                            android:text="75 "
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
@@ -596,7 +580,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tvGradInstitute"
                         android:fontFamily="sans-serif-light"
-                        android:text="Montessory Memmorial English Boarding high school"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -620,7 +603,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tvGradUniversity"
                         android:fontFamily="sans-serif-light"
-                        android:text="Montessory Memmorial English Boarding high school"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -645,7 +627,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tvGradQualification"
                         android:fontFamily="sans-serif-light"
-                        android:text="Montessory Memmorial English Boarding high school"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -655,7 +636,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:weightSum="3"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -680,7 +661,6 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/tvGradYoj"
                             android:fontFamily="sans-serif-light"
-                            android:text="1993/06/22 "
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
@@ -709,7 +689,6 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/tvGradScore"
                             android:fontFamily="sans-serif-light"
-                            android:text="Science "
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
@@ -727,7 +706,314 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:layout_marginEnd="15dp"
                             android:text="Year of Completion "
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvGradYoe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="15dp"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Post Graduation Detail"
+                        android:textAlignment="center"
+                        android:textColor="@color/headings"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:paddingEnd="5dp"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Joining Year"
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvPGJoining"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="5dp"
+                        android:paddingEnd="5dp"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Backlogs "
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvPGBacklog"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="15dp"
+                            android:text="Expected Ending "
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvPgEnd"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="15dp"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1"
+                    android:paddingEnd="5dp"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SGPA sem I "
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvSgpaSem1"
+                        android:fontFamily="sans-serif-light"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
+                    android:paddingEnd="5dp"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SGPA Sem II "
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvSgpaSem2"
+                        android:fontFamily="sans-serif-light"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SGPA Sem III "
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="15dp"
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvSgpaSem3"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="15dp"
+                        android:fontFamily="sans-serif-light"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:paddingEnd="5dp"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SGPA sem IV "
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvSgpaSem4"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="5dp"
+                        android:paddingEnd="5dp"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SGPA Sem V "
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvSgpaSem5"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SGPA Sem VI "
                             android:layout_gravity="end"
                             android:layout_marginEnd="15dp"
                             android:textColor="@color/headings"
@@ -736,17 +1022,65 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvGradYoe"
+                            android:id="@+id/tvSgpaSem6"
                             android:layout_gravity="end"
                             android:layout_marginEnd="15dp"
                             android:fontFamily="sans-serif-light"
-                            android:text="75 "
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CGPA "
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvPGCGPA"
+                        android:fontFamily="sans-serif-light"
+
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address "
+                    android:textColor="@color/headings"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvAddress"
+                    android:fontFamily="sans-serif-light"
+
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
 
 
             </LinearLayout>

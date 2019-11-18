@@ -3,6 +3,7 @@ package com.example.test2;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +22,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import static java.lang.Double.NaN;
 
 public class PostGraduation_Details extends AppCompatActivity {
 
@@ -65,6 +68,14 @@ public class PostGraduation_Details extends AppCompatActivity {
         editTextSGPA4.addTextChangedListener(CgpaCalculator);
         editTextSGPA5.addTextChangedListener(CgpaCalculator);
         editTextSGPA6.addTextChangedListener(CgpaCalculator);
+
+        editTextSGPA1.setOnFocusChangeListener(textListener);
+        editTextSGPA2.setOnFocusChangeListener(textListener);
+        editTextSGPA3.setOnFocusChangeListener(textListener);
+        editTextSGPA4.setOnFocusChangeListener(textListener);
+        editTextSGPA5.setOnFocusChangeListener(textListener);
+        editTextSGPA6.setOnFocusChangeListener(textListener);
+
 
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +126,8 @@ public class PostGraduation_Details extends AppCompatActivity {
     }
 
 
-    private TextWatcher CgpaCalculator = new TextWatcher() {
+    private TextWatcher CgpaCalculator = new TextWatcher()
+    {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -159,13 +171,17 @@ public class PostGraduation_Details extends AppCompatActivity {
 
 
                 value = (s1+s2+s3+s4+s5+s6)/(a1+a2+a3+a4+a5+a6);
+
+                if(Double.isNaN(value)) //division by 0 returns NaN
+                    value = 0.0;
+
                 answer = String.valueOf(value);
                 editTextCGPA.setText(answer);
             }
             catch (Exception e)
             {
 
-                // give message
+
             }
 
         }
@@ -174,11 +190,25 @@ public class PostGraduation_Details extends AppCompatActivity {
         public void afterTextChanged(Editable editable)
         {
 
-
-
 }
-
     };
+
+
+    // pop up message to inform : press 0 for backlog
+private View.OnFocusChangeListener textListener = new View.OnFocusChangeListener() {
+    @Override
+    public void onFocusChange(View view, boolean b) {
+
+        if(b)
+        {
+            Snackbar.make(findViewById(R.id.top_coordinator), "Enter 0 if you have a backlog",
+                    Snackbar.LENGTH_SHORT)
+                    .show();
+        }
+    }
+};
+
+
 
     private void intoDatabase()
     {
