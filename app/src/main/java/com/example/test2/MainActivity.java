@@ -7,15 +7,17 @@ import com.google.firebase.auth.FirebaseUser;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity
 {
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser user = auth.getCurrentUser();
 
 
-
-Button view;
+    Button view;
 
 
     @Override
@@ -24,6 +26,7 @@ Button view;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button personal, tenth, twelve, bachelor, pg, logout;
+        TextView textViewEmail;
 
         personal = findViewById(R.id.buttonPersonal);
         tenth = findViewById(R.id.buttonSchool);
@@ -31,7 +34,17 @@ Button view;
         bachelor = findViewById(R.id.buttonBachelor);
         pg = findViewById(R.id.buttonPG);
         logout = findViewById(R.id.buttonLogout);
+        textViewEmail = findViewById(R.id.mainEmail);
         view = findViewById(R.id.buttonView);
+
+
+        if(user != null)
+        {
+
+            String email = user.getEmail();
+            textViewEmail.setText(email);
+
+        }
 
 
         personal.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +96,6 @@ Button view;
             @Override
             public void onClick(View view) {
 
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-                FirebaseUser user = auth.getCurrentUser();
                 if(user != null)
                 {
                     auth.signOut();

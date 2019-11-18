@@ -96,7 +96,7 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
             }
             else
             {
-                Toast.makeText(viewActivity.this, "kuch nahe mela bosarike", Toast.LENGTH_SHORT).show();
+                Toast.makeText(viewActivity.this, "Nothing to Display", Toast.LENGTH_SHORT).show();
             }
         }
 

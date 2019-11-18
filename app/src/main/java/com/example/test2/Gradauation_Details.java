@@ -25,8 +25,8 @@ import android.widget.Toast;
 public class Gradauation_Details extends AppCompatActivity {
 
     private EditText editTextQualification, editTextInstitute, editTextUniversity ;
-    private EditText editTextScore, editTextYOPassing, editTextCourseStart, editTextCourseEnd;
-    private String qualification, institute, university, score, YOP, CourseStart, CourseEnd;
+    private EditText editTextScore, editTextCourseStart, editTextCourseEnd;
+    private String qualification, institute, university, score, CourseStart, CourseEnd;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
 
@@ -42,7 +42,6 @@ public class Gradauation_Details extends AppCompatActivity {
         editTextQualification = findViewById(R.id.textUGQualification);
         editTextScore = findViewById(R.id.textUGScore);
         editTextUniversity = findViewById(R.id.textUGUniversity);
-        editTextYOPassing = findViewById(R.id.textUGYOP);
         editTextCourseStart = findViewById(R.id.textUGCoursestart);
         editTextCourseEnd =findViewById(R.id.textUGCourseend);
 
@@ -54,7 +53,7 @@ public class Gradauation_Details extends AppCompatActivity {
                 qualification = editTextQualification.getText().toString().trim();
                 score = editTextScore.getText().toString().trim();
                 university = editTextUniversity.getText().toString().trim();
-                YOP = editTextYOPassing.getText().toString().trim();
+                //YOP = editTextYOPassing.getText().toString().trim();
                 CourseStart = editTextCourseStart.getText().toString().trim();
                 CourseEnd = editTextCourseEnd.getText().toString().trim();
 
@@ -71,10 +70,10 @@ public class Gradauation_Details extends AppCompatActivity {
                     return;
                 }
 
-                if (TextUtils.isEmpty(YOP)) {
+                /*if (TextUtils.isEmpty(YOP)) {
                     editTextYOPassing.setError("Field cannot be blank");
                     return;
-                }
+                }*/
                 if (TextUtils.isEmpty(score)) {
                     editTextScore.setError("Field cannot be blank");
                     return;
@@ -101,7 +100,7 @@ public class Gradauation_Details extends AppCompatActivity {
         String uid;
         FirebaseUser user = mAuth.getCurrentUser();
         Model_GraduationDetails object = new Model_GraduationDetails(qualification, institute,
-                university, score, YOP, CourseStart, CourseEnd);
+                university, score, CourseStart, CourseEnd);
         if(user != null)
         {
             uid = user.getUid();

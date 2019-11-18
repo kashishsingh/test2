@@ -2,28 +2,37 @@ package com.example.test2;
 
 public class Model_basicDetails
 {
-    private String name,usn,email,father,date, phone, selectedRadio, id;
+    private String name,usn,personalEmail,father,date, phone, selectedRadio, id, collegeEmail;
     private String mImageUrl;
 
     public Model_basicDetails()
     {}
 
-    public Model_basicDetails(String name, String USN, String email, String phone, String father,
-                             String date, String gender, String mImageUrl, String id)
+    public Model_basicDetails(String name, String USN, String personalEmail, String phone, String father,
+                             String date, String gender, String mImageUrl, String id, String collegeEmail)
     {
         this.name = name;
         this.usn = USN;
-        this.email = email;
+        this.personalEmail = personalEmail;
         this.phone = phone;
         this.father = father;
         this.date = date;
         this.selectedRadio = gender;
         this.mImageUrl = mImageUrl;
         this.id = id;
+        this.collegeEmail = collegeEmail;
+    }
+
+    public String getCollegeEmail() {
+        return collegeEmail;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getUsn() {
@@ -31,7 +40,7 @@ public class Model_basicDetails
     }
 
     public String getEmail() {
-        return email;
+        return personalEmail;
     }
 
     public String getPhone() {
@@ -64,16 +73,12 @@ public class Model_basicDetails
         this.usn = usn;
     }
 
-    public String getId() {
-        return id;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String personalEmail) {
+        this.personalEmail = personalEmail;
     }
 
     public void setFather(String father) {
@@ -94,6 +99,10 @@ public class Model_basicDetails
 
     public void setmImageUrl(String mImageUrl) {
         this.mImageUrl = mImageUrl;
+    }
+
+    public void setCollegeEmail(String collegeEmail) {
+        this.collegeEmail = collegeEmail;
     }
 
 

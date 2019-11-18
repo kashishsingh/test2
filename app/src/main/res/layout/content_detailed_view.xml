@@ -26,6 +26,7 @@
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:id="@+id/imageView"
                 android:layout_marginStart="9dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="9dp"
@@ -37,7 +38,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgUser"
@@ -45,35 +46,34 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-light"
-            android:text="Kashish singh"
+            android:text="Test Name"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
 
         <TextView
-            android:id="@+id/tv_address"
+            android:id="@+id/tvCollegeMail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
+            android:layout_below="@+id/tvName"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="3dp"
             android:fontFamily="sans-serif"
-            android:text="kashish.mca17@bmsce.ac.in"
-            android:textAllCaps="true"
+            android:text="kishan.mca17@bmsce.ac.in"
             android:textColor="@color/address"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/phone"
+            android:id="@+id/tvUsn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
+            android:layout_below="@+id/tvName"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="3dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif"
-            android:text="1BM17MCA23"
+            android:text="1BM17MCA99"
             android:textAllCaps="true"
             android:textColor="@color/address"
             android:textSize="14sp" />
@@ -137,6 +137,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tvPersonalMail"
                         android:fontFamily="sans-serif-light"
                         android:text="kashish.singh2050@gmail.com "
                         android:textColor="#000000"
@@ -172,7 +173,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:text="1993/06/22 "
-
+                            android:id="@+id/tvDate"
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
@@ -198,6 +199,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/tvGender"
                             android:layout_gravity="end"
                             android:layout_marginEnd="15dp"
                             android:fontFamily="sans-serif-light"
@@ -225,6 +227,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tvFather"
                         android:fontFamily="sans-serif-light"
                         android:text="Kiran singh "
                         android:textColor="#000000"
@@ -278,16 +281,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tv10Institute"
                         android:fontFamily="sans-serif-light"
                         android:text="Montessory Memmorial English Boarding high school"
                         android:textColor="#000000"
                         android:textSize="16sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/grey" />
 
                 </LinearLayout>
 
@@ -307,16 +305,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tv10University"
                         android:fontFamily="sans-serif-light"
                         android:text="Montessory Memmorial English Boarding high school"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/grey" />
 
                 </LinearLayout>
 
@@ -344,9 +338,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/tvYop10"
                             android:fontFamily="sans-serif-light"
                             android:text="1993/06/22 "
-
                             android:textColor="#000000"
                             android:textSize="16sp" />
 
@@ -372,6 +366,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/tv10percent"
                             android:layout_gravity="end"
                             android:layout_marginEnd="15dp"
                             android:fontFamily="sans-serif-light"
@@ -382,6 +377,377 @@
                     </LinearLayout>
 
                 </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Twelve Details"
+                        android:textAlignment="center"
+                        android:textColor="@color/headings"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Institution "
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv12Institute"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Sai Global H.S "
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Board/ university "
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv12University"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Montessory Memmorial English Boarding high school"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:paddingEnd="5dp"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Year of Passing "
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv12Yop"
+                            android:fontFamily="sans-serif-light"
+                            android:text="1993/06/22 "
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="5dp"
+                        android:paddingEnd="5dp"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Stream "
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv12Stream"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Science "
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="percentage "
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv12Percentage"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="15dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="75 "
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/grey" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Graduation Detail"
+                        android:textAlignment="center"
+                        android:textColor="@color/headings"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Institution "
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvGradInstitute"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Montessory Memmorial English Boarding high school"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Board/ university "
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvGradUniversity"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Montessory Memmorial English Boarding high school"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Qualification "
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvGradQualification"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Montessory Memmorial English Boarding high school"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:paddingEnd="5dp"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Year of Joining "
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvGradYoj"
+                            android:fontFamily="sans-serif-light"
+                            android:text="1993/06/22 "
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="5dp"
+                        android:paddingEnd="5dp"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Score "
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvGradScore"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Science "
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Year of Completion "
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="15dp"
+                            android:textColor="@color/headings"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvGradYoe"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="15dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="75 "
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

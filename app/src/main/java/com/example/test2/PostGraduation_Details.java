@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,9 +24,10 @@ import android.widget.Toast;
 
 public class PostGraduation_Details extends AppCompatActivity {
 
-    private EditText editTextYOJ, editTextYOP, editTextSemester, editTextSGPA;
-    private EditText editTextCGPA, editTextBacklog, editTextAddress;
-    private String YOJ, YOP, semester, SGPA, CGPA, backlog, address;
+    private EditText editTextSGPA1, editTextSGPA2, editTextSGPA3, editTextSGPA4, editTextSGPA5, editTextSGPA6;
+    private EditText editTextCGPA, editTextBacklog, editTextAddress, editTextYOJ, editTextYOP;
+    private String YOJ, YOP, SGPA1="0", SGPA2="0", SGPA3="0", SGPA4="0", SGPA5="0", SGPA6="0",
+            CGPA, backlog, address;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
 
@@ -37,15 +40,31 @@ public class PostGraduation_Details extends AppCompatActivity {
         Button btnSubmit;
         auth = FirebaseAuth.getInstance();
 
-        editTextYOJ = findViewById(R.id.textPGYOJ);
-        editTextYOP = findViewById(R.id.textPGYOP);
-        editTextSemester = findViewById(R.id.textPGSem);
-        editTextSGPA = findViewById(R.id.textPGSGPA);
-        editTextCGPA = findViewById(R.id.textPGCGPA);
-        editTextBacklog = findViewById(R.id.textPGBacklog);
-        editTextAddress = findViewById(R.id.textPresentAddress);
+        editTextYOJ = findViewById(R.id.etPgYoj);
+        editTextYOP = findViewById(R.id.etPgYoc);
+
+        editTextSGPA1 = findViewById(R.id.etSem1);
+        editTextSGPA2 = findViewById(R.id.etSem2);
+        editTextSGPA3 = findViewById(R.id.etSem3);
+        editTextSGPA4 = findViewById(R.id.etSem4);
+        editTextSGPA5 = findViewById(R.id.etSem5);
+        editTextSGPA6 = findViewById(R.id.etSem6);
+
+        editTextCGPA = findViewById(R.id.etCgpa);
+        editTextBacklog = findViewById(R.id.etBacklog);
+        editTextAddress = findViewById(R.id.etCurrentAddress);
         progressBar = findViewById(R.id.progressBarPG);
-        btnSubmit = findViewById(R.id.buttonPG);
+        btnSubmit = findViewById(R.id.btn_submit);
+        editTextCGPA.setKeyListener(null);
+
+        progressBar.setVisibility(ProgressBar.GONE);
+
+        editTextSGPA1.addTextChangedListener(CgpaCalculator);
+        editTextSGPA2.addTextChangedListener(CgpaCalculator);
+        editTextSGPA3.addTextChangedListener(CgpaCalculator);
+        editTextSGPA4.addTextChangedListener(CgpaCalculator);
+        editTextSGPA5.addTextChangedListener(CgpaCalculator);
+        editTextSGPA6.addTextChangedListener(CgpaCalculator);
 
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -54,40 +73,40 @@ public class PostGraduation_Details extends AppCompatActivity {
 
                 YOJ = editTextYOJ.getText().toString().trim();
                 YOP = editTextYOP.getText().toString().trim();
-                semester = editTextSemester.getText().toString().trim();
-                SGPA = editTextSGPA.getText().toString().trim();
                 CGPA = editTextCGPA.getText().toString().trim();
                 backlog = editTextBacklog.getText().toString().trim();
                 address = editTextAddress.getText().toString().trim();
 
+                SGPA1 = editTextSGPA1.getText().toString().trim();
+                SGPA2 = editTextSGPA2.getText().toString().trim();
+                SGPA3 = editTextSGPA3.getText().toString().trim();
+                SGPA4 = editTextSGPA4.getText().toString().trim();
+                SGPA5 = editTextSGPA5.getText().toString().trim();
+                SGPA6 = editTextSGPA6.getText().toString().trim();
+
+
                 if (TextUtils.isEmpty(YOJ)) {
                     editTextYOJ.setError("Field cannot be blank");
-                    return;
+                    return ;
                 }
                 if (TextUtils.isEmpty(YOP)) {
                     editTextYOP.setError("Field cannot be blank");
-                    return;
+                    return ;
                 }
-                if (TextUtils.isEmpty(semester)) {
-                    editTextSemester.setError("Field cannot be blank");
-                    return;
-                }
-                if (TextUtils.isEmpty(SGPA)) {
-                    editTextSGPA.setError("Field cannot be blank");
-                    return;
-                }
+
                 if (TextUtils.isEmpty(CGPA)) {
                     editTextCGPA.setError("Field cannot be blank");
-                    return;
+                    return ;
                 }
                 if (TextUtils.isEmpty(backlog)) {
                     editTextBacklog.setError("Field cannot be blank");
-                    return;
+                    return ;
                 }
                 if (TextUtils.isEmpty(address)) {
                     editTextAddress.setError("Field cannot be blank");
-                    return;
+                    return ;
                 }
+
 
                 intoDatabase();
             }
@@ -95,18 +114,84 @@ public class PostGraduation_Details extends AppCompatActivity {
 
     }
 
+
+    private TextWatcher CgpaCalculator = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int j, int i1, int i2) {
+
+            double value;
+            String answer;
+            double s1=0, s2=0, s3=0, s4=0 ,s5=0, s6=0;
+            int a1=0,a2=0,a3=0,a4=0,a5=0,a6=0;
+
+            SGPA1 = editTextSGPA1.getText().toString().trim();
+            SGPA2 = editTextSGPA2.getText().toString().trim();
+            SGPA3 = editTextSGPA3.getText().toString().trim();
+            SGPA4 = editTextSGPA4.getText().toString().trim();
+            SGPA5 = editTextSGPA5.getText().toString().trim();
+            SGPA6 = editTextSGPA6.getText().toString().trim();
+            try
+            {
+                if(!SGPA1.equals(""))
+                    s1 = Double.parseDouble(SGPA1);
+                if(!SGPA2.equals(""))
+                    s2 = Double.parseDouble(SGPA2);
+                if(!SGPA3.equals(""))
+                    s3 = Double.parseDouble(SGPA3);
+                if(!SGPA4.equals(""))
+                    s4 = Double.parseDouble(SGPA4);
+                if(!SGPA5.equals(""))
+                    s5 = Double.parseDouble(SGPA5);
+                if(!SGPA6.equals(""))
+                    s6 = Double.parseDouble(SGPA6);
+
+                if(s1>0){ a1=1;}
+                if(s2>0){a2=1;}
+                if(s3>0){a3=1;}
+                if(s4>0){a4=1;}
+                if(s5>0){a5=1;}
+                if(s6>0){a6=1;}
+
+
+                value = (s1+s2+s3+s4+s5+s6)/(a1+a2+a3+a4+a5+a6);
+                answer = String.valueOf(value);
+                editTextCGPA.setText(answer);
+            }
+            catch (Exception e)
+            {
+
+                // give message
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable)
+        {
+
+
+
+}
+
+    };
+
     private void intoDatabase()
     {
         progressBar.setVisibility(ProgressBar.VISIBLE);
         DatabaseReference rootRef;
-        String uid, collegeEmail;
+        String uid;
         FirebaseUser user = auth.getCurrentUser();
 
         if(user != null)
         {
             uid = user.getUid();
-            collegeEmail = user.getEmail();
-            Model_PGDetail object = new Model_PGDetail(YOJ, YOP, semester, SGPA, CGPA, backlog, address,collegeEmail);
+           //collegeEmail = user.getEmail();
+            Model_PGDetail object = new Model_PGDetail(YOJ, YOP, CGPA, backlog, address,SGPA1,SGPA2,SGPA3,SGPA4, SGPA5,SGPA6);
 
             rootRef = FirebaseDatabase.getInstance().getReference("user/"+uid);
 
@@ -133,7 +218,7 @@ public class PostGraduation_Details extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(PostGraduation_Details.this,"error",Toast.LENGTH_SHORT).show();
+            Toast.makeText(PostGraduation_Details.this,"User not Loggged in",Toast.LENGTH_SHORT).show();
         }
 
 

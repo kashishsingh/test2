@@ -63,41 +63,22 @@
         android:layout_width="315dp"
         android:layout_height="44dp"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="42dp"
-        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Board/University"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/textUGYOP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUGInstitute" />
 
     <EditText
-        android:id="@+id/textUGYOP"
-        android:layout_width="315dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Year of Passing"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/textUGScore"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textUGUniversity" />
-
-    <EditText
         android:id="@+id/textUGScore"
         android:layout_width="315dp"
         android:layout_height="41dp"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="42dp"
         android:layout_marginBottom="10dp"
         android:ems="10"
@@ -105,9 +86,8 @@
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/textUGCoursestart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textUGYOP" />
+        app:layout_constraintTop_toBottomOf="@+id/textUGUniversity" />
 
     <EditText
         android:id="@+id/textUGCoursestart"

@@ -1,167 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".PostGraduation_Details"
-    tools:showIn="@layout/activity_post_graduation__details">
+    android:id="@+id/relativeTop"
+    android:padding="25dp"
+    android:orientation="vertical"
+    tools:context=".PostGraduation_Details">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/details"
+    android:textAlignment="center"
+    android:textSize="22sp"
+    android:textColor="#000000"
+    android:text="Post Graduation Details"/>
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/details"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="2">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etPgYoj"
+            android:layout_gravity="start"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:hint="Year of joining" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etPgYoc"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:hint="Year of Completion" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:padding="10dp"
+        android:id="@+id/middle"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/top"
+        android:background="@drawable/selector_background"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="Enter SGPA as applicable" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etSem1"
+                android:layout_width="100dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:hint="sem 1" />
+
+            <EditText
+                android:id="@+id/etSem2"
+                android:layout_width="100dp"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:hint="sem 2" />
+
+            <EditText
+                android:id="@+id/etSem3"
+                android:layout_width="100dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:hint="sem 3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etSem4"
+                android:layout_width="100dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:hint="sem 4" />
+
+
+            <EditText
+                android:id="@+id/etSem5"
+                android:layout_width="100dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:hint="sem 5" />
+
+            <EditText
+                android:id="@+id/etSem6"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:hint="sem 6" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/textPGDetails"
-        android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="42dp"
-        android:text="Post Graduation Details"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/textPGYOJ"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="Year Of Joining"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/textPGYOP"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPGDetails" />
-
-    <EditText
-        android:id="@+id/textPGYOP"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="year of Passing"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/textPGSem"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPGYOJ" />
-
-    <EditText
-        android:id="@+id/textPGSem"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="Semester"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/textPGSGPA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPGYOP" />
-
-    <EditText
-        android:id="@+id/textPGSGPA"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="SGPA"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/textPGCGPA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPGSem" />
-
-    <EditText
-        android:id="@+id/textPGCGPA"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="CGPA"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/textPGBacklog"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPGSGPA" />
-
-    <EditText
-        android:id="@+id/textPGBacklog"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="Backlogs(If not enter 0)"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/textPresentAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPGCGPA" />
-
-    <EditText
-        android:id="@+id/textPresentAddress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Present Address"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPG"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPGBacklog" />
-
-    <Button
-        android:id="@+id/buttonPG"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="8dp"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPresentAddress" />
-
-    <ProgressBar
-        android:id="@+id/progressBarPG"
-        style="?android:attr/progressBarStyle"
+        android:id="@+id/textView1"
+        android:layout_below="@+id/top"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="10dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPG"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPresentAddress" />
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Marks Details"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/third"
+        android:layout_below="@+id/middle"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp">
+
+        <EditText
+            android:id="@+id/etCgpa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="false"
+            android:hint="CGPA" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etBacklog"
+            android:layout_marginTop="10dp"
+            android:hint="BackLog"
+            android:inputType="numberDecimal" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etCurrentAddress"
+            android:layout_marginTop="10dp"
+            android:hint="Current Address"
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/third">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBarPG"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_submit"
+        android:text="Submit"/>
+
+</LinearLayout>
+
+</RelativeLayout>
+

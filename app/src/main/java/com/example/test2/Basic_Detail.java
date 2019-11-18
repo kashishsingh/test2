@@ -54,7 +54,7 @@ public class Basic_Detail extends AppCompatActivity {
     private ImageView userPhoto;
     private EditText editTextEmail, editTextName, editTextUSN, editTextFather, editTextDate, editTextPhone;
     private String date, id;
-    private String name, USN, email, phone, father, gender;
+    private String name, USN, personalEmail, phone, father, gender,collegeEmail;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private StorageReference mStorageRef, fileReference;
@@ -111,7 +111,7 @@ public class Basic_Detail extends AppCompatActivity {
                 {
                     name = editTextName.getText().toString().trim();
                     USN = editTextUSN .getText().toString().trim();
-                    email = editTextEmail .getText().toString().trim();
+                    personalEmail = editTextEmail .getText().toString().trim();
                     phone = editTextPhone.getText().toString().trim();
                     father = editTextFather .getText().toString().trim();
                     String bDate = editTextDate.getText().toString().trim();
@@ -128,9 +128,9 @@ public class Basic_Detail extends AppCompatActivity {
                         return;
                     }
 
-                    if (!TextUtils.isEmpty(email))
+                    if (!TextUtils.isEmpty(personalEmail))
                     {
-                        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())
+                        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(personalEmail).matches())
                         {
                             editTextEmail.setError("Pattern Missmatch");
                             return;
@@ -213,6 +213,7 @@ public class Basic_Detail extends AppCompatActivity {
             if(user != null)
             {
                 id = user.getUid();
+                collegeEmail = user.getEmail();
             }
 
             if(imageUri!=null)
@@ -247,7 +248,8 @@ public class Basic_Detail extends AppCompatActivity {
                         {
                             Uri downloadUri = task.getResult();
                             String photoUrl = downloadUri.toString();
-                            Model_basicDetails object = new Model_basicDetails(name, USN, email, phone, father, date, gender, photoUrl,id );
+
+                            Model_basicDetails object = new Model_basicDetails(name, USN, personalEmail, phone, father, date, gender, photoUrl,id,collegeEmail );
                             rootRef = FirebaseDatabase.getInstance().getReference("user/"+id);
                             rootRef.child("Basic").setValue(object);
                             mProgressBar.setVisibility(ProgressBar.GONE);
