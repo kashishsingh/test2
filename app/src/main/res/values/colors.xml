@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <!--<color name="colorPrimaryDark">#00574B</color> -->
+    <color name="colorPrimaryDark">#3823AE</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="colorPrimary2">#49BEFF</color>
@@ -18,7 +19,13 @@
     <color name="followersBg">#65DCE5</color>
     <color name="followingBg">#49BEFF</color>
     <color name="grey">#E5E5E5</color>
-
     <color name="white">#FFFFFF</color>
+
+
+    <color name="dark_blue">#3823AE</color>
+    <color name="purple">#c86dd7</color>
+    <color name="login_form_details">#cqffffff</color>
+    <color name="login_form_details_light">#laffffff</color>
+    <color name="login_form_details_medium">#66ffffff</color>
 
 </resources>

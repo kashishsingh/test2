@@ -143,6 +143,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="42dp"
         android:orientation="horizontal"
+        android:weightSum="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textDate">
@@ -150,6 +151,7 @@
         <RadioButton
             android:id="@+id/radioMale"
             android:layout_width="100dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="Male" />
@@ -157,14 +159,15 @@
         <RadioButton
             android:id="@+id/radioFemale"
             android:layout_width="100dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Female" />
 
         <RadioButton
             android:id="@+id/radioFemale2"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="Other" />
     </RadioGroup>
 

@@ -114,6 +114,7 @@
     <string name="date_of_birth">date of birth</string>
     <string name="title_activity_view">viewActivity</string>
     <string name="title_activity_detailed_view">DetailedViewActivity</string>
+    <string name="title_activity_placement">placement</string>
 
 
 </resources>

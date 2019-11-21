@@ -2,18 +2,19 @@ package com.example.test2;
 
 public class Model_PGDetail
 {
-    private String YOJ, YOP, CGPA, backlog, address, SGPA1, SGPA2, SGPA3, SGPA4, SGPA5, SGPA6;
+    private String YOJ, YOP, CGPA, semester, backlog, address, SGPA1, SGPA2, SGPA3, SGPA4, SGPA5, SGPA6;
 
     public  Model_PGDetail()
     {
         //
     }
 
-    public Model_PGDetail(String YOJ, String YOP, String CGPA, String backlog, String address,
+    public Model_PGDetail(String YOJ, String YOP, String CGPA, String semester, String backlog, String address,
                           String SGPA1, String SGPA2, String SGPA3, String SGPA4, String SGPA5, String SGPA6) {
         this.YOJ = YOJ;
         this.YOP = YOP;
         this.CGPA = CGPA;
+        this.semester = semester;
         this.backlog = backlog;
         this.address = address;
         this.SGPA1 = SGPA1;
@@ -38,6 +39,14 @@ public class Model_PGDetail
 
     public void setYOP(String YOP) {
         this.YOP = YOP;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
     }
 
     public String getCGPA() {

@@ -23,14 +23,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import static java.lang.Double.NaN;
-
 public class PostGraduation_Details extends AppCompatActivity {
 
     private EditText editTextSGPA1, editTextSGPA2, editTextSGPA3, editTextSGPA4, editTextSGPA5, editTextSGPA6;
-    private EditText editTextCGPA, editTextBacklog, editTextAddress, editTextYOJ, editTextYOP;
+    private EditText editTextCGPA, editTextBacklog, editTextAddress, editTextYOJ, editTextYOP, editTextSemester;
     private String YOJ, YOP, SGPA1="0", SGPA2="0", SGPA3="0", SGPA4="0", SGPA5="0", SGPA6="0",
-            CGPA, backlog, address;
+            CGPA, backlog, address, semester;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
 
@@ -45,6 +43,7 @@ public class PostGraduation_Details extends AppCompatActivity {
 
         editTextYOJ = findViewById(R.id.etPgYoj);
         editTextYOP = findViewById(R.id.etPgYoc);
+        editTextSemester =  findViewById(R.id.etPgCurrentSem);
 
         editTextSGPA1 = findViewById(R.id.etSem1);
         editTextSGPA2 = findViewById(R.id.etSem2);
@@ -54,7 +53,7 @@ public class PostGraduation_Details extends AppCompatActivity {
         editTextSGPA6 = findViewById(R.id.etSem6);
 
         editTextCGPA = findViewById(R.id.etCgpa);
-        editTextBacklog = findViewById(R.id.etBacklog);
+        editTextBacklog = findViewById(R.id.etPgBacklog);
         editTextAddress = findViewById(R.id.etCurrentAddress);
         progressBar = findViewById(R.id.progressBarPG);
         btnSubmit = findViewById(R.id.btn_submit);
@@ -77,7 +76,6 @@ public class PostGraduation_Details extends AppCompatActivity {
         editTextSGPA6.setOnFocusChangeListener(textListener);
 
 
-
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +85,7 @@ public class PostGraduation_Details extends AppCompatActivity {
                 CGPA = editTextCGPA.getText().toString().trim();
                 backlog = editTextBacklog.getText().toString().trim();
                 address = editTextAddress.getText().toString().trim();
+                semester = editTextSemester.getText().toString().trim();
 
                 SGPA1 = editTextSGPA1.getText().toString().trim();
                 SGPA2 = editTextSGPA2.getText().toString().trim();
@@ -105,14 +104,22 @@ public class PostGraduation_Details extends AppCompatActivity {
                     return ;
                 }
 
-                if (TextUtils.isEmpty(CGPA)) {
-                    editTextCGPA.setError("Field cannot be blank");
-                    return ;
+                if(TextUtils.isEmpty(semester))
+                {
+                    editTextSemester.setError("Field cannot be blank");
+                    return;
                 }
+
                 if (TextUtils.isEmpty(backlog)) {
                     editTextBacklog.setError("Field cannot be blank");
                     return ;
                 }
+
+                /*if (TextUtils.isEmpty(CGPA)) {
+                    editTextCGPA.setError("Field cannot be blank");
+                    return ;
+                }*/
+
                 if (TextUtils.isEmpty(address)) {
                     editTextAddress.setError("Field cannot be blank");
                     return ;
@@ -190,7 +197,7 @@ public class PostGraduation_Details extends AppCompatActivity {
         public void afterTextChanged(Editable editable)
         {
 
-}
+        }
     };
 
 
@@ -221,7 +228,7 @@ private View.OnFocusChangeListener textListener = new View.OnFocusChangeListener
         {
             uid = user.getUid();
            //collegeEmail = user.getEmail();
-            Model_PGDetail object = new Model_PGDetail(YOJ, YOP, CGPA, backlog, address,SGPA1,SGPA2,SGPA3,SGPA4, SGPA5,SGPA6);
+            Model_PGDetail object = new Model_PGDetail(YOJ, YOP, CGPA, semester, backlog, address,SGPA1,SGPA2,SGPA3,SGPA4, SGPA5,SGPA6);
 
             rootRef = FirebaseDatabase.getInstance().getReference("user/"+uid);
 

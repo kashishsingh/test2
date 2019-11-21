@@ -42,7 +42,7 @@ public class DetailedViewActivity extends AppCompatActivity {
 
     private TextView textViewPGSem1, textViewPGSem2,textViewPGSem3,textViewPGSem4,textViewPGSem5,
             textViewPGSem6,textViewPGAddress, textViewPGBacklog, textViewPGCGPA,
-            textViewPGYoj, textViewPGYoe;
+            textViewPGYoj, textViewPGYoe, textViewPgSem;
 
 
 
@@ -233,7 +233,8 @@ public class DetailedViewActivity extends AppCompatActivity {
         textViewPGBacklog = findViewById(R.id.tvPGBacklog);
         textViewPGYoj = findViewById(R.id.tvPGJoining);
         textViewPGYoe = findViewById(R.id.tvPgEnd);
-        textViewPGCGPA = findViewById(R.id.tvPGCGPA);
+        textViewPGCGPA = findViewById(R.id.tvPgCgpa);
+        textViewPgSem = findViewById(R.id.tvPgSemester);
 
         refPG.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -257,6 +258,7 @@ public class DetailedViewActivity extends AppCompatActivity {
                         textViewPGCGPA.setText(mpg.getCGPA());
                         textViewPGYoj.setText(mpg.getYOJ());
                         textViewPGYoe.setText(mpg.getYOP());
+                        textViewPgSem.setText(mpg.getSemester());
 
 
                     }

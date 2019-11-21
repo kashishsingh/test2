@@ -76,6 +76,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:baselineAligned="true"
             android:layout_gravity="end"
             >
 
@@ -84,7 +85,7 @@
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="6dp"
                 android:contentDescription="user Picture"
                 android:scaleType="centerCrop" />

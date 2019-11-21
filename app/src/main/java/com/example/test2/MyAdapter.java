@@ -25,26 +25,26 @@ import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> implements Filterable
 {
 
-     private Context context;
-     private ArrayList<Model_basicDetails> profile;
-     private ArrayList<Model_basicDetails> profileFull;
-     private OnNoteListener mOnNoteListener;
+    private Context context;
+    private ArrayList<Model_basicDetails> profile;
+    private ArrayList<Model_basicDetails> profileFull;
+    private OnNoteListener mOnNoteListener;
 
 
-     MyAdapter(Context context, ArrayList<Model_basicDetails> profile, OnNoteListener onNoteListener )
-     {
-         this.context = context;
-         this.profile = profile;
-         this.mOnNoteListener = onNoteListener;
-         profileFull = new ArrayList<>(profile);
-     }
+    MyAdapter(Context context, ArrayList<Model_basicDetails> profile, OnNoteListener onNoteListener )
+    {
+        this.context = context;
+        this.profile = profile;
+        this.mOnNoteListener = onNoteListener;
+        profileFull = new ArrayList<>(profile);
+    }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-         View v = LayoutInflater.from(context).inflate(R.layout.cardview,parent,false);
-         return new MyViewHolder(v,mOnNoteListener);
+        View v = LayoutInflater.from(context).inflate(R.layout.cardview,parent,false);
+        return new MyViewHolder(v,mOnNoteListener);
     }
 
     @Override
@@ -74,28 +74,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         ImageView pic;
         OnNoteListener onNoteListener;
 
-            MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener)
-            {
-                super(itemView);
+        MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener)
+        {
+            super(itemView);
 
-                name = itemView.findViewById(R.id.name);
-                usn = itemView.findViewById(R.id.usn);
-                email = itemView.findViewById(R.id.email);
-                pic = itemView.findViewById(R.id.pic);
-                phone = itemView.findViewById(R.id.phone);
-                id = itemView.findViewById(R.id.id);
+            name = itemView.findViewById(R.id.name);
+            usn = itemView.findViewById(R.id.usn);
+            email = itemView.findViewById(R.id.email);
+            pic = itemView.findViewById(R.id.pic);
+            phone = itemView.findViewById(R.id.phone);
+            id = itemView.findViewById(R.id.id);
 
-                this.onNoteListener = onNoteListener;
+            this.onNoteListener = onNoteListener;
 
-                itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
 
-            }
+        }
 
         @Override
         public void onClick(View view)
         {
 
-                onNoteListener.onNoteClick(getAdapterPosition());
+            onNoteListener.onNoteClick(getAdapterPosition());
 
         }
     }
@@ -138,9 +138,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         }
     };
 
-     public interface OnNoteListener
-     {
-         void onNoteClick(int position);
+    public interface OnNoteListener
+    {
+        void onNoteClick(int position);
 
-     }
+    }
 }
