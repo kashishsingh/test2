@@ -20,7 +20,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#edebf7"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -73,7 +75,9 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+
+                               >
 
                                 <ImageView
                                     android:layout_width="50dp"
@@ -87,6 +91,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Pesonal Details"
                                     android:textSize="16sp"
+                                    android:textColor="#3823AE"
                                     android:layout_below="@id/personal"
                                     android:layout_centerHorizontal="true"
                                     android:layout_marginTop="10dp"
@@ -107,12 +112,14 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:background="@color/dark_blue"
                             android:layout_marginLeft="5dp"
                             android:layout_gravity="center">
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                              >
 
                                 <ImageView
                                     android:layout_width="50dp"
@@ -125,6 +132,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="School Details"
+                                    android:textColor="#3823AE"
                                     android:textSize="16sp"
                                     android:layout_below="@id/school"
                                     android:layout_centerHorizontal="true"
@@ -159,52 +167,14 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:id="@+id/twelve"
-                                    android:src="@drawable/twelve"
-                                    android:layout_centerInParent="true"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="12/PSU Details"
-                                    android:textSize="16sp"
-                                    android:layout_below="@id/twelve"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"/>
-                                <Button
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:id="@+id/buttonTwelve"
-                                    android:background="@android:color/transparent"
-                                    />
-
-
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_marginLeft="5dp"
-                            android:layout_gravity="center">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                               >
 
                                 <ImageView
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:id="@+id/Bachelor"
-                                    android:src="@drawable/bachelor"
+                                    android:src="@drawable/twelve"
                                     android:layout_centerInParent="true"/>
 
                                 <TextView
@@ -213,6 +183,7 @@
                                     android:text="Bachelor Details"
                                     android:textSize="16sp"
                                     android:layout_below="@id/Bachelor"
+                                    android:textColor="#3823AE"
                                     android:layout_centerHorizontal="true"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginBottom="10dp"/>
@@ -228,30 +199,23 @@
 
                         </androidx.cardview.widget.CardView>
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="135dp"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="10dp"
-                        >
-
                         <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_gravity="center">
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                              >
 
                                 <ImageView
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:id="@+id/pg"
-                                    android:src="@drawable/pg"
+                                    android:src="@drawable/bachelor"
                                     android:layout_centerInParent="true"/>
 
                                 <TextView
@@ -260,6 +224,7 @@
                                     android:text="Post Graduate Details"
                                     android:textSize="16sp"
                                     android:layout_below="@id/pg"
+                                    android:textColor="#3823AE"
                                     android:layout_centerHorizontal="true"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginBottom="10dp"/>
@@ -275,52 +240,12 @@
 
                         </androidx.cardview.widget.CardView>
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_marginLeft="5dp"
-                            android:layout_gravity="center">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:id="@+id/logout"
-                                    android:src="@drawable/logout"
-                                    android:layout_centerInParent="true"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Logout"
-                                    android:textSize="16sp"
-                                    android:layout_below="@id/logout"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"/>
-                                <Button
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:id="@+id/buttonLogout"
-                                    android:background="@android:color/transparent"
-                                    />
-
-
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="135dp"
                         android:orientation="horizontal"
-                        android:layout_marginBottom="10dp"
-                        >
+                        android:layout_marginBottom="10dp">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
@@ -331,7 +256,54 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+
+                                >
+
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:id="@+id/placement"
+                                    android:src="@drawable/pg"
+                                    android:layout_centerInParent="true"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Placement Details"
+                                    android:textSize="16sp"
+                                    android:layout_below="@id/placement"
+                                    android:textColor="#3823AE"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"/>
+
+                                <Button
+                                    android:id="@+id/buttonPlacement"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginEnd="0dp"
+                                    android:layout_marginBottom="0dp"
+                                    android:background="@android:color/transparent" />
+
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            android:layout_gravity="center">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                               >
 
                                 <ImageView
                                     android:layout_width="50dp"
@@ -346,6 +318,7 @@
                                     android:text="View"
                                     android:textSize="16sp"
                                     android:layout_below="@id/view"
+                                    android:textColor="#3823AE"
                                     android:layout_centerHorizontal="true"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginBottom="10dp"/>
@@ -361,37 +334,87 @@
 
                         </androidx.cardview.widget.CardView>
 
-                        <androidx.cardview.widget.CardView
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="135dp"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                       <!-- <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:layout_gravity="center">
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                               >
 
                                 <ImageView
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    android:id="@+id/sample"
-                                    android:src="@drawable/logout"
+                                    android:id="@+id/view"
+                                    android:src="@drawable/ic_view"
                                     android:layout_centerInParent="true"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Sample"
+                                    android:text="View"
                                     android:textSize="16sp"
-                                    android:layout_below="@id/sample"
+                                    android:layout_below="@id/view"
+                                    android:textColor="#3823AE"
                                     android:layout_centerHorizontal="true"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginBottom="10dp"/>
                                 <Button
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:id="@+id/buttonSample"
+                                    android:id="@+id/buttonView"
+                                    android:background="@android:color/transparent"
+                                    />
+
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView> -->
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="center">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                               >
+
+                                <ImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:id="@+id/logout"
+                                    android:src="@drawable/logout"
+                                    android:layout_centerInParent="true"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Logout"
+                                    android:textSize="16sp"
+                                    android:layout_below="@id/logout"
+                                    android:textColor="#3823AE"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"/>
+                                <Button
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/buttonLogout"
                                     android:background="@android:color/transparent"
                                     />
 

@@ -26,7 +26,7 @@ import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 public class DetailedViewActivity extends AppCompatActivity {
 
-    private DatabaseReference refBasic, refTenth, refGraduation,refPG;
+    private DatabaseReference refBasic, refTenth, refGraduation,refPG, refPlacement;
 
     private TextView textViewName,textViewUsn, textViewPersonalMail, textViewCollegeMail, textViewFather,
                         textViewGender, textViewDate;
@@ -43,6 +43,8 @@ public class DetailedViewActivity extends AppCompatActivity {
     private TextView textViewPGSem1, textViewPGSem2,textViewPGSem3,textViewPGSem4,textViewPGSem5,
             textViewPGSem6,textViewPGAddress, textViewPGBacklog, textViewPGCGPA,
             textViewPGYoj, textViewPGYoe, textViewPgSem;
+
+    private TextView textViewPackage, textViewCompany, textViewType;
 
 
 
@@ -63,11 +65,13 @@ public class DetailedViewActivity extends AppCompatActivity {
         refTenth = FirebaseDatabase.getInstance().getReference("user/"+id+"/tenth");
         refGraduation = FirebaseDatabase.getInstance().getReference("user/"+id+"/Graduation");
         refPG = FirebaseDatabase.getInstance().getReference("user/"+id+"/PG");
+        refPlacement = FirebaseDatabase.getInstance().getReference("user/"+id+"/Placement");
 
         displayBasic();
         displayTenth();
         displayGraduation();
         displayPG();
+        displayPlacement();
 
 
     }
@@ -120,7 +124,8 @@ public class DetailedViewActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
 
             }
         });
@@ -273,10 +278,51 @@ public class DetailedViewActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError)
             {
 
-                Toast.makeText(DetailedViewActivity.this,"problem fetching Graduation data",Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailedViewActivity.this,"problem fetching Post Graduation data",Toast.LENGTH_SHORT).show();
             }
         });
 
 
+    }
+
+    private  void  displayPlacement()
+    {
+        textViewPackage = findViewById(R.id.tvPackage);
+        textViewCompany = findViewById(R.id.tvCompany);
+        textViewType = findViewById(R.id.tvType);
+
+        refPlacement.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if(dataSnapshot.exists())
+                {
+                    Model_PlacementDetails mPlace = dataSnapshot.getValue(Model_PlacementDetails.class);
+                    if(mPlace != null)
+                    {
+                        textViewPackage.setText(mPlace.getPackage());
+                        textViewCompany.setText(mPlace.getCompany());
+                        textViewType.setText(mPlace.getType());
+                    }
+                    else
+                    {
+                        Toast.makeText(DetailedViewActivity.this," Empty",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
+                    textViewPackage.setText(R.string.Blank);
+                    textViewCompany.setText(R.string.Blank);
+                    textViewType.setText(R.string.Blank);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+                Toast.makeText(DetailedViewActivity.this,"problem fetching Placement data",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

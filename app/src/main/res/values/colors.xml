@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#4b38b6</color>
     <!--<color name="colorPrimaryDark">#00574B</color> -->
     <color name="colorPrimaryDark">#3823AE</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#611E8A</color>
 
     <color name="colorPrimary2">#49BEFF</color>
     <color name="colorPrimaryDark2">#65DCE5</color>
     <color name="colorAccent2">#0D5D98</color>
 
     <color name="address">#2F7092</color>
-    <color name="followers">#0D5D98</color>
+    <color name="main_headings">#3823AE</color>
     <color name="headings">#3797CF</color>
     <color name="solidCircle">#AAFFFFFF</color>
     <color name="circleBorder">#50FFFFFF</color>
@@ -23,9 +23,10 @@
 
 
     <color name="dark_blue">#3823AE</color>
+    <color name="light_blue">#853823AE</color>
     <color name="purple">#c86dd7</color>
-    <color name="login_form_details">#cqffffff</color>
-    <color name="login_form_details_light">#laffffff</color>
+    <color name="login_form_details">#50ffffff</color>
+    <color name="login_form_details_light">#50ffffff</color>
     <color name="login_form_details_medium">#66ffffff</color>
 
 </resources>

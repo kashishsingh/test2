@@ -25,16 +25,17 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button personal, tenth, twelve, bachelor, pg, logout;
+        Button personal, tenth, twelve, bachelor, pg, logout, placement;
         TextView textViewEmail;
 
         personal = findViewById(R.id.buttonPersonal);
         tenth = findViewById(R.id.buttonSchool);
-        twelve = findViewById(R.id.buttonTwelve);
+       // twelve = findViewById(R.id.buttonTwelve);
         bachelor = findViewById(R.id.buttonBachelor);
         pg = findViewById(R.id.buttonPG);
         logout = findViewById(R.id.buttonLogout);
         textViewEmail = findViewById(R.id.mainEmail);
+        placement = findViewById(R.id.buttonPlacement);
         view = findViewById(R.id.buttonView);
 
 
@@ -65,14 +66,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        twelve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this,Tenth_Details.class);
-                startActivity(intent);
-            }
-        });
 
         bachelor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +107,17 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,viewActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        placement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, com.example.test2.placement.class);
+                startActivity(intent);
+
             }
         });
 

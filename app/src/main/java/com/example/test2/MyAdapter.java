@@ -50,16 +50,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position)
     {
+        try
+        {
+            holder.name.setText(profile.get(position).getName());
+            holder.usn.setText(profile.get(position).getUsn());
+            holder.email.setText(profile.get(position).getEmail());
+            holder.phone.setText(profile.get(position).getPhone());
+            //holder.id.setText(profile.get(position).getId());
+            holder.id.getId();
+            Picasso.with(context).load(profile.get(position).getmImageUrl())
+                    .transform(new CropCircleTransformation())
+                    .into(holder.pic);
+        }
+        catch (Exception e)
+        {
+            //
+        }
 
-        holder.name.setText(profile.get(position).getName());
-        holder.usn.setText(profile.get(position).getUsn());
-        holder.email.setText(profile.get(position).getEmail());
-        holder.phone.setText(profile.get(position).getPhone());
-        //holder.id.setText(profile.get(position).getId());
-        holder.id.getId();
-        Picasso.with(context).load(profile.get(position).getmImageUrl())
-                .transform(new CropCircleTransformation())
-                .into(holder.pic);
+
+
     }
 
     @Override

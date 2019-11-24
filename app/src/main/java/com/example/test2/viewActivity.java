@@ -50,10 +50,11 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
 
         button = findViewById(R.id.btnSearch);
         final EditText filterCgpa = findViewById(R.id.tvCgpa);
+        filterCgpa.setSelected(false);
+        filterCgpa.setSingleLine();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(viewActivity.this));
-        //Query query = FirebaseDatabase.getInstance().getReference().orderByChild("name").equalTo("kashish");
 
         ref = FirebaseDatabase.getInstance().getReference("user");
         ref.addValueEventListener(valueEventListener);
@@ -63,40 +64,48 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
       button.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-              ref.removeEventListener(valueEventListener);
-              DatabaseReference searchRef;
-              searchRef = FirebaseDatabase.getInstance().getReference("user");
-              searchRef.addValueEventListener(new ValueEventListener() {
-                  @Override
-                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                      list = new ArrayList<Model_basicDetails>();
-                      list2 = new ArrayList<Model_PGDetail>();
+              if(filterCgpa.getText().toString().equals(""))
+              {
 
-                      if (dataSnapshot.exists()) {
-                          for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
-                              // Model_basicDetails detail = dataSnapshot2.child("Basic").getValue(Model_basicDetails.class);
-                              Model_PGDetail detail = dataSnapshot2.child("PG").getValue(Model_PGDetail.class);
-                              float c = Float.parseFloat(detail.getCGPA());
-                              try {
-                                  float d = Float.parseFloat(filterCgpa.getText().toString());//input from EditText
-                                  if (c > d) {
-                                      Model_basicDetails detail2 = dataSnapshot2.child("Basic").getValue(Model_basicDetails.class);
-                                      list.add(detail2);
+              }
+              else
+              {
+                  ref.removeEventListener(valueEventListener);
+                  DatabaseReference searchRef;
+                  searchRef = FirebaseDatabase.getInstance().getReference("user");
+                  searchRef.addValueEventListener(new ValueEventListener() {
+                      @Override
+                      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                          list = new ArrayList<Model_basicDetails>();
+                          list2 = new ArrayList<Model_PGDetail>();
+
+                          if (dataSnapshot.exists()) {
+                              for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
+                                  Model_PGDetail detail = dataSnapshot2.child("PG").getValue(Model_PGDetail.class);
+                                  try
+                                  {
+                                      float c = Float.parseFloat(detail.getCGPA());
+                                      float d = Float.parseFloat(filterCgpa.getText().toString());//input from EditText
+                                      if (c > d) {
+                                          Model_basicDetails detail2 = dataSnapshot2.child("Basic").getValue(Model_basicDetails.class);
+                                          list.add(detail2);
+                                      }
+                                  } catch (Exception e) {
+
                                   }
-                              } catch (Exception e) {
-
+                                  adapter = new MyAdapter(viewActivity.this, list, listener);
+                                  recyclerView.setAdapter(adapter);
                               }
-                              adapter = new MyAdapter(viewActivity.this, list, listener);
-                              recyclerView.setAdapter(adapter);
                           }
                       }
-                  }
 
-                  @Override
-                  public void onCancelled(@NonNull DatabaseError databaseError) {
+                      @Override
+                      public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                  }
-              });
+                      }
+                  });
+              }
+
           }
       });
 
@@ -116,10 +125,10 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
             {
                 for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren())
                 {
-                    Model_PGDetail detail2 = dataSnapshot2.child("PG").getValue(Model_PGDetail.class);
+                    //Model_PGDetail detail2 = dataSnapshot2.child("PG").getValue(Model_PGDetail.class);
                     Model_basicDetails detail = dataSnapshot2.child("Basic").getValue(Model_basicDetails.class);
                     list.add(detail);
-                    list2.add(detail2);
+                   // list2.add(detail2);
 
                 }
                 adapter = new MyAdapter(viewActivity.this, list, listener);
@@ -157,7 +166,16 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
+
+                try
+                {
+                    adapter.getFilter().filter(newText);
+                }
+                catch (Exception e)
+                {
+
+                }
+
                 return false;
             }
         });
@@ -166,7 +184,8 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
     }
 
     @Override
-    public void onNoteClick(int position) {
+    public void onNoteClick(int position)
+    {
         Model_basicDetails obj = list.get(position);
         String id = obj.getId();
         Intent intent = new Intent(viewActivity.this,DetailedViewActivity.class);

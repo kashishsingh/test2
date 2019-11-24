@@ -240,7 +240,7 @@ private View.OnFocusChangeListener textListener = new View.OnFocusChangeListener
                     {
                         progressBar.setVisibility(ProgressBar.GONE);
                         Toast.makeText(PostGraduation_Details.this,"Saved",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(PostGraduation_Details.this,MainActivity.class);
+                        Intent intent = new Intent(PostGraduation_Details.this,placement.class);
                         startActivity(intent);
                     }
                     else

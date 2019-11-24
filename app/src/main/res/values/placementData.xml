@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="placement_array">
+        <item>FT</item>
+        <item>IT</item>
+        <item>IT + FT</item>
+        <item>IT + PBC</item>
+    </string-array>
+</resources>
