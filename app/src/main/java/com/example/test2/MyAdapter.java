@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> implements Filterable
 {
 
+    private ProgressBar progressBar;
     private Context context;
     private ArrayList<Model_basicDetails> profile;
     private ArrayList<Model_basicDetails> profileFull;
@@ -52,22 +54,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
     {
         try
         {
+
             holder.name.setText(profile.get(position).getName());
             holder.usn.setText(profile.get(position).getUsn());
             holder.email.setText(profile.get(position).getEmail());
             holder.phone.setText(profile.get(position).getPhone());
-            //holder.id.setText(profile.get(position).getId());
             holder.id.getId();
             Picasso.with(context).load(profile.get(position).getmImageUrl())
                     .transform(new CropCircleTransformation())
                     .into(holder.pic);
+            holder.itemView.findViewById(R.id.viewProgress).setVisibility(ProgressBar.GONE);
+
         }
         catch (Exception e)
         {
             //
         }
-
-
 
     }
 
@@ -93,6 +95,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             pic = itemView.findViewById(R.id.pic);
             phone = itemView.findViewById(R.id.phone);
             id = itemView.findViewById(R.id.id);
+            progressBar = itemView.findViewById(R.id.viewProgress);
 
             this.onNoteListener = onNoteListener;
 

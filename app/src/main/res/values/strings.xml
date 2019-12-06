@@ -116,6 +116,7 @@
     <string name="title_activity_detailed_view">DetailedViewActivity</string>
     <string name="title_activity_placement">placement</string>
     <string name="Blank">Blank</string>
+    <string name="title_activity_splash">SplashActivity</string>
 
 
 </resources>

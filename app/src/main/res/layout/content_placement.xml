@@ -50,20 +50,20 @@
             android:id="@+id/placeRadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="end"
             android:orientation="horizontal"
             >
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/radioYes"
-                android:checked="true"
                 android:text="Yes" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/radioNo"
+                android:checked="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="10dp"
                 android:text="No" />
@@ -100,7 +100,7 @@
                 android:layout_marginEnd="20dp"/>
 
             <Spinner
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/placeSpinner">
             </Spinner>

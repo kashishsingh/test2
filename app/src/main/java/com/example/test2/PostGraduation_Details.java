@@ -1,6 +1,7 @@
 package com.example.test2;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -115,16 +116,10 @@ public class PostGraduation_Details extends AppCompatActivity {
                     return ;
                 }
 
-                /*if (TextUtils.isEmpty(CGPA)) {
-                    editTextCGPA.setError("Field cannot be blank");
-                    return ;
-                }*/
-
                 if (TextUtils.isEmpty(address)) {
                     editTextAddress.setError("Field cannot be blank");
                     return ;
                 }
-
 
                 intoDatabase();
             }
@@ -204,13 +199,20 @@ public class PostGraduation_Details extends AppCompatActivity {
     // pop up message to inform : press 0 for backlog
 private View.OnFocusChangeListener textListener = new View.OnFocusChangeListener() {
     @Override
-    public void onFocusChange(View view, boolean b) {
-
+    public void onFocusChange(View view, boolean b)
+    {
         if(b)
         {
-            Snackbar.make(findViewById(R.id.top_coordinator), "Enter 0 if you have a backlog",
-                    Snackbar.LENGTH_SHORT)
-                    .show();
+
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.top_coordinator),"Enter 0 if you have a backlog",
+                    Snackbar.LENGTH_LONG);
+            View sbView = snackbar.getView();
+            sbView.setBackgroundColor(Color.parseColor("#400000"));// change from red to other color
+            snackbar.show();
+            //Snackbar.make(findViewById(R.id.top_coordinator), "Enter 0 if you have a backlog",
+                   // Snackbar.LENGTH_SHORT).show();
+
+
         }
     }
 };

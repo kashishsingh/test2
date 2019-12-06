@@ -29,4 +29,7 @@
     <color name="login_form_details_light">#50ffffff</color>
     <color name="login_form_details_medium">#66ffffff</color>
 
+    <color name="my_statusbar_color">@color/purple</color>
+
+
 </resources>

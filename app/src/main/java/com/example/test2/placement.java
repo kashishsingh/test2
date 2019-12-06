@@ -1,6 +1,7 @@
 package com.example.test2;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,15 +44,14 @@ public class placement extends AppCompatActivity implements AdapterView.OnItemSe
 
         pAuth= FirebaseAuth.getInstance();
 
-        RadioGroup placeRadioGroup;
-        RadioButton radioClickedID;
+        final RadioGroup placeRadioGroup;
+        //RadioButton radioClickedID;
         placeRadioGroup = findViewById(R.id.placeRadioGroup);
         mProgressBar = findViewById(R.id.placeProgressBar);
         mProgressBar.setVisibility(ProgressBar.GONE);
         int radioPlaceId = placeRadioGroup.getCheckedRadioButtonId();
-        radioClickedID = findViewById(radioPlaceId);
+        //radioClickedID = findViewById(radioPlaceId);
         spinner = findViewById(R.id.placeSpinner);
-        //String YN = radioClickedID.getText().toString().toLowerCase();
         placeButton = findViewById(R.id.placeSubmit);
 
         editTextplaceCompany = findViewById(R.id.placeCompany);
@@ -59,6 +59,14 @@ public class placement extends AppCompatActivity implements AdapterView.OnItemSe
 
         initializeSpinner();
         spinner.setOnItemSelectedListener(this);
+
+        editTextplaceCompany.setEnabled(false);
+        editTextplaceCompany.setFocusableInTouchMode(false);
+        editTextPlacePackage.setEnabled(false);
+        editTextPlacePackage.setFocusableInTouchMode(false);
+        placeButton.setEnabled(false);
+        spinner.setEnabled(false);
+        placeButton.setBackgroundResource(0);
 
 
         placeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -68,22 +76,20 @@ public class placement extends AppCompatActivity implements AdapterView.OnItemSe
 
                     editTextplaceCompany.setEnabled(false);
                     editTextplaceCompany.setFocusableInTouchMode(false);
-
                     editTextPlacePackage.setEnabled(false);
                     editTextPlacePackage.setFocusableInTouchMode(false);
                     placeButton.setEnabled(false);
-
                     spinner.setEnabled(false);
+                    placeButton.setBackgroundResource(0);
 
                 } else if (checkedI == R.id.radioYes) {
                     editTextplaceCompany.setEnabled(true);
                     editTextplaceCompany.setFocusableInTouchMode(true);
-
                     editTextPlacePackage.setEnabled(true);
                     editTextPlacePackage.setFocusableInTouchMode(true);
                     placeButton.setEnabled(true);
-
                     spinner.setEnabled(true);
+                    placeButton.setBackgroundResource(R.drawable.rounded);
                 }
 
             }

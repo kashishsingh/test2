@@ -18,13 +18,15 @@ import androidx.appcompat.widget.Toolbar;
         import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
 
-        import android.view.Menu;
+import android.os.Handler;
+import android.view.Menu;
         import android.view.MenuInflater;
         import android.view.MenuItem;
         import android.view.View;
         import android.view.inputmethod.EditorInfo;
         import android.widget.Button;
         import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
         import java.util.ArrayList;
 
@@ -36,6 +38,7 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
     ArrayList<Model_basicDetails> list;
     ArrayList <Model_PGDetail> list2;
     MyAdapter adapter;
+    ProgressBar progressBar;
     MyAdapter.OnNoteListener listener;
 
 
@@ -48,6 +51,8 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
         toolbar.setTitle("Students Detail");
         setSupportActionBar(toolbar);
 
+        progressBar = findViewById(R.id.viewProgress);
+
         button = findViewById(R.id.btnSearch);
         final EditText filterCgpa = findViewById(R.id.tvCgpa);
         filterCgpa.setSelected(false);
@@ -58,6 +63,15 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
 
         ref = FirebaseDatabase.getInstance().getReference("user");
         ref.addValueEventListener(valueEventListener);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                progressBar.setVisibility(ProgressBar.GONE);
+            }
+        },3000);
 
         listener = this;
 
@@ -79,7 +93,8 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
                           list = new ArrayList<Model_basicDetails>();
                           list2 = new ArrayList<Model_PGDetail>();
 
-                          if (dataSnapshot.exists()) {
+                         /* if (dataSnapshot.exists())
+                          {
                               for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
                                   Model_PGDetail detail = dataSnapshot2.child("PG").getValue(Model_PGDetail.class);
                                   try
@@ -96,7 +111,34 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
                                   adapter = new MyAdapter(viewActivity.this, list, listener);
                                   recyclerView.setAdapter(adapter);
                               }
-                          }
+                          }*/
+                         if(dataSnapshot.exists())
+                         {
+                             for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                             {
+                                 Model_PGDetail detail = dataSnapshot1.child("PG").getValue(Model_PGDetail.class);
+                                 try
+                                 {
+                                     int sem = Integer.parseInt(detail.getSemester());
+                                     if(sem > 4)
+                                     {
+                                         float c = Float.parseFloat(detail.getCGPA());
+                                         float d = Float.parseFloat(filterCgpa.getText().toString());//input from EditText
+                                         if (c > d)
+                                         {
+                                             Model_basicDetails detail2 = dataSnapshot1.child("Basic").getValue(Model_basicDetails.class);
+                                             list.add(detail2);
+                                         }
+                                     }
+                                 }
+                                 catch (Exception c)
+                                 {
+                                     Toast.makeText(viewActivity.this,c.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                                 }
+                                 adapter = new MyAdapter(viewActivity.this, list, listener);
+                                 recyclerView.setAdapter(adapter);
+                             }
+                         }
                       }
 
                       @Override
@@ -191,6 +233,8 @@ public class viewActivity extends AppCompatActivity implements MyAdapter.OnNoteL
         Intent intent = new Intent(viewActivity.this,DetailedViewActivity.class);
         intent.putExtra("id",id);
         startActivity(intent);
+
+
 
     }
 

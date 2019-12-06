@@ -76,7 +76,7 @@
                 android:layout_weight="1"
                 android:width="105dp"
                 android:textColor="@color/colorAccent"
-                android:hint="Current semester"
+                android:hint="Current sem"
                 android:inputType="number" />
 
             <EditText
